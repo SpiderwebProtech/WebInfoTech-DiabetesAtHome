@@ -14,7 +14,7 @@ header {
   grid-area: header;
   padding: 60px;
   text-align: center;
-  background: #0742F2;
+  background: #2699FB;
   color: white;
   font-size: 30px;
 }
@@ -22,9 +22,28 @@ header {
 nav {
   grid-area: nav;
   text-align: center;
+  background: #BCE0FD
 }
-main {grid-area: main;}
+
+main {
+  grid-area: main;
+  background: #F1F9FF
+  
+}
+
 footer {
   grid-area: footer;
   text-align: center;
+}
+
+.button {
+  background-color: #7FC4FD;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  margin: 10px 0px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
