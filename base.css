@@ -1,6 +1,10 @@
-body { /* page layout - desktop version */
+* {
+  font: normal 14px Arial;
+}
+
+body {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 6fr;
   grid-template-rows: 1fr 4fr 1fr;
   grid-gap: 1rem;
 
@@ -32,8 +36,24 @@ main {
 }
 
 footer {
+  font: normal 14px Arial;
   grid-area: footer;
   text-align: center;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 52px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .button {
@@ -46,4 +66,35 @@ footer {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.centered-heading {
+  text-align: center
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-space-around {
+  justify-content: space-around;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.founder-box {
+  width: 250px;
+	margin: 10px;
+	padding: 10px;
+  background: #7FC4FD;
+  text-align: center;
+  border-radius: 25px;
+}
+
+@media (max-width: 375px) {
+  .founder-box {
+    width: 160px;
+  }
 }
