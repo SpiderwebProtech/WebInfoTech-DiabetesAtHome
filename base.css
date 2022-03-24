@@ -5,7 +5,7 @@
 body {
   display: grid;
   grid-template-columns: 1fr 6fr;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 200px 6fr 150px;
   grid-gap: 1rem;
 
   grid-template-areas: 
@@ -37,6 +37,7 @@ main {
 
 footer {
   font: normal 14px Arial;
+  background: #7FC4FD;
   grid-area: footer;
   text-align: center;
 }
