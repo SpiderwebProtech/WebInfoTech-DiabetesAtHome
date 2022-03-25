@@ -57,6 +57,10 @@ h3 {
   font-size: 18px;
 }
 
+p {
+  text-align: center;
+}
+
 .button {
   background-color: #7FC4FD;
   border: none;
