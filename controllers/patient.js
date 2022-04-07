@@ -1,10 +1,10 @@
-const Patient = require('../models/Patient');
+const Patient = require('../models/Patient.js')
 
 /**
  * GET /patientlogin
  * patientogin page.
  */
- exports.getLogin = (req, res) => {
+exports.getLogin = (req, res) => {
     if (req.user) {
       return res.redirect('/');
     }
@@ -12,3 +12,5 @@ const Patient = require('../models/Patient');
       title: 'Login'
     });
   };
+
+  

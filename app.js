@@ -1,15 +1,34 @@
 const express = require('express');
-const hostname = '127.0.0.1';
-const port = 3000;
+const exphbs = require('express-handlebars');
 
-const patientController = require('./controllers/patient');
+const patientController = require('./controllers/patient.js');
 
 const app = express();
+const port = 3000;
 
-app.get('/');
+
+app.use(express.static('public'));
+app.engine('hbs', exphbs.engine({
+  defaultlayout: 'main',
+  extname: 'hbs'
+}))
+app.set('view engine', 'hbs');
+
+app.get('/', (req, res) => {
+  res.render('index.hbs');
+});
+
+app.get('/about-diabetes', (req, res) => {
+  res.render('about-diabetes.hbs');
+})
+
+app.get('/about-this-website', (req, res) => {
+  res.render('about-this-website.hbs');
+})
+
 app.get('/patientlogin', patientController.getLogin);
 
-app.listen(app.get('port'), () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(port, () => {
+  console.log(`App is running on http://localhost:${port} in ${app.get('env')} mode`);
   console.log('Press CTRL-C to stop');
 });
