@@ -15,15 +15,15 @@ app.engine('hbs', exphbs.engine({
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-  res.render('index.hbs');
+  res.render('splash/index.hbs');
 });
 
 app.get('/about-diabetes', (req, res) => {
-  res.render('about-diabetes.hbs');
+  res.render('splash/about-diabetes.hbs');
 })
 
 app.get('/about-this-website', (req, res) => {
-  res.render('about-this-website.hbs');
+  res.render('splash/about-this-website.hbs');
 })
 
 app.get('/patientlogin', patientController.getLogin);
