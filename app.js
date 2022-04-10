@@ -4,7 +4,6 @@ const exphbs = require('express-handlebars')
 const patientController = require('./controllers/patient.js')
 
 const app = express()
-const port = 3000
 
 app.use(express.static('public'))
 app.engine(
@@ -30,9 +29,6 @@ app.get('/about-this-website', (req, res) => {
 
 app.get('/patientlogin', patientController.getLogin)
 
-app.listen(port, () => {
-    console.log(
-        `App is running on http://localhost:${port} in ${app.get('env')} mode`
-    )
-    console.log('Press CTRL-C to stop')
+app.listen(process.env.PORT || 3000, () => {
+    console.log('Diabetes@Home is running')
 })
