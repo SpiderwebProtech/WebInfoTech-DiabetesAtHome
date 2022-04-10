@@ -6,11 +6,9 @@ const Patient = require('../models/Patient.js')
  */
 exports.getLogin = (req, res) => {
     if (req.user) {
-      return res.redirect('/');
+        return res.redirect('/')
     }
     res.render('account/patientlogin', {
-      title: 'Login'
-    });
-  };
-
-  
+        title: 'Login',
+    })
+}

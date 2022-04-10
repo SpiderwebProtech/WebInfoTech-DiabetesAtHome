@@ -1,9 +1,9 @@
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
 
 const patientSchema = new mongoose.Schema({
     profile: {
         name: String,
-    }
+    },
 })
 
-const Patient = mongoose.model('Patient', patientSchema);
+const Patient = mongoose.model('Patient', patientSchema)
