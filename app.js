@@ -27,8 +27,10 @@ app.get('/about-this-website', (req, res) => {
     res.render('splash/about-this-website.hbs')
 })
 
-app.get('/patientlogin', patientController.getLogin)
+app.get('/patientlogin', patientController.getPatientLogin)
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Diabetes@Home is running')
 })
+
+require('./models')

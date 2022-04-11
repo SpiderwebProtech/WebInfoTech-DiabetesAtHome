@@ -25,6 +25,7 @@
     "mongoose": "^6.2.10"
   },
   "devDependencies": {
+    "dotenv": "^16.0.0",
     "prettier": "^2.6.2"
   }
 }
