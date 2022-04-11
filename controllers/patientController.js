@@ -1,4 +1,4 @@
-const Patient = require('../models/patient.js')
+const Patient = require('../models/patientModel')
 
 const getAllPatientData = async (req, res, next) => {
     try {
@@ -31,4 +31,4 @@ const getPatientLogin = (req, res) => {
     })
 }
 
-module.exports = {getAllPatientData, getPatientById, getPatientLogin,}
+module.exports = {getAllPatientData, getPatientById, getPatientLogin}

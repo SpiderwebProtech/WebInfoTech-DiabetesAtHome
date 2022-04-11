@@ -1,7 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 
-const patientController = require('./controllers/patient.js')
+const patientRouter = require('./routes/patientRouter')
 
 const app = express()
 
@@ -27,7 +27,7 @@ app.get('/about-this-website', (req, res) => {
     res.render('splash/about-this-website.hbs')
 })
 
-app.get('/patientlogin', patientController.getPatientLogin)
+app.use('/patient', patientRouter)
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Diabetes@Home is running')
