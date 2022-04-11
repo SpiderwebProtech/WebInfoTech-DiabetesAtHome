@@ -1,4 +1,4 @@
-const Patient = require('../models/patient')
+const Patient = require('../models/patient.js')
 
 const getAllPatientData = async (req, res, next) => {
     try {
