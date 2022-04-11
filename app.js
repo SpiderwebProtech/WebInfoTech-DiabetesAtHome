@@ -17,7 +17,6 @@ app.get('/', (req, res) => {
     res.render('index.hbs')
 })
 
-
 const patientRouter = require('./routes/patientRouter')
 const clinicianRouter = require('./routes/clinicianRouter')
 
