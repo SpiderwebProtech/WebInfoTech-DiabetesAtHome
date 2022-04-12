@@ -1,35 +1,29 @@
 const Patient = require("../models/patientModel");
 
-// NONE OF THIS SHIT IS CORRECT
-// JUST KINDA FLUFF TO GET US ON THE RIGHT PATH
-const getAllPatientData = async (req, res, next) => {
-  try {
-    const patient = await Patient.find().lean();
-    return res.render("allData", { data: patient });
-  } catch (err) {
-    return next(err);
-  }
-};
-
 const getPatientById = async (req, res, next) => {
   try {
-    const patient = await Patient.findById(req.params.patient_id).lean();
+    const patient = await Patient.findById(req.params.id).lean();
     if (!patient) {
       return res.sendStatus(404);
     }
-    return res.render("oneData", { oneItem: patient });
+    return res.send(patient);
   } catch (err) {
     return next(err);
   }
 };
 
 const getPatientLogin = (req, res) => {
-  if (req.user) {
-    return res.redirect("/");
-  }
-  res.render("account/patientlogin", {
+  console.log("Login page called");
+  res.render("patient/patient-login", {
     title: "Login",
   });
 };
 
-module.exports = { getAllPatientData, getPatientById, getPatientLogin };
+const postPatientLogin = async (req, res) => {
+  const patient = await Patient.findOne({ email: req.body.email }).lean();
+  if (patient && patient.password && patient.password == req.body.password) {
+    res.redirect(`/patient/${patient._id}`);
+  }
+};
+
+module.exports = { getPatientById, getPatientLogin, postPatientLogin };
