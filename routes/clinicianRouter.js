@@ -1,9 +1,9 @@
-const express = require('express')
+const express = require("express");
 
-const clinicianRouter = express.Router()
+const clinicianRouter = express.Router();
 
-clinicianRouter.get('/login', (req, res) => {
-    res.render('clinician/clinician-login')
-})
+clinicianRouter.get("/", (req, res) => {
+  res.render("clinician/clinician-login");
+});
 
-module.exports = clinicianRouter
+module.exports = clinicianRouter;
