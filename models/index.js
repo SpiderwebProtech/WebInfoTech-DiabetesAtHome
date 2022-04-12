@@ -3,7 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_URL || "mongodb://localhost", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: "demo",
