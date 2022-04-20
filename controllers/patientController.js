@@ -1,4 +1,5 @@
 const Patient = require("../models/patientModel");
+const PatientDay = require("../models/patientDayModel");
 
 const getPatientById = async (id) => {
   try {
@@ -34,7 +35,16 @@ const postPatientLogin = async (req, res) => {
   if (patient && patient.password && patient.password == req.body.password) {
     return res.redirect(`/patient/${patient._id}/dashboard`);
   }
-  return res.redirect("/patient");
+  res.redirect("back");
 };
 
-module.exports = { getPatientDashboard, getPatientLogin, postPatientLogin };
+const postPatientDay = (req, res) => {
+  return res.redirect("back");
+};
+
+module.exports = {
+  getPatientDashboard,
+  getPatientLogin,
+  postPatientLogin,
+  postPatientDay,
+};
