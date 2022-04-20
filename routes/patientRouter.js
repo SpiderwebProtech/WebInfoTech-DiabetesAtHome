@@ -15,6 +15,6 @@ patientRouter.get("/about-this-website", (req, res) => {
   res.render("patient/about-this-website");
 });
 
-patientRouter.get("/:id", patientController.getPatientById);
+patientRouter.get("/:id/dashboard", patientController.getPatientDashboard);
 
 module.exports = patientRouter;
