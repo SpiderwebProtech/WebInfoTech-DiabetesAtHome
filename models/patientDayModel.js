@@ -5,7 +5,7 @@ const patientDaySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patient",
   },
-  data: { type: Date },
+  date: { type: Date },
   bloodGlucose: { type: Number },
   weight: { type: Number },
   insulinDoses: { type: Number },
