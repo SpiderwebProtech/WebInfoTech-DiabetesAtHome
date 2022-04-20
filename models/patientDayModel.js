@@ -5,11 +5,11 @@ const patientDaySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patient",
   },
-  date: { type: Date },
-  bloodGlucose: { type: Number },
-  weight: { type: Number },
-  insulinDoses: { type: Number },
-  exercise: { type: Number },
+  date: { type: String },
+  bloodGlucose: { type: Number, default: null },
+  weight: { type: Number, default: null },
+  insulinDoses: { type: Number, default: null },
+  exercise: { type: Number, default: null },
 });
 
 const PatientDay = mongoose.model("PatientDay", patientDaySchema);
