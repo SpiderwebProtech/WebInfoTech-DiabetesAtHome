@@ -16,5 +16,6 @@ patientRouter.get("/about-this-website", (req, res) => {
 });
 
 patientRouter.get("/:id/dashboard", patientController.getPatientDashboard);
+patientRouter.post("/:id/postday", patientController.postPatientDay);
 
 module.exports = patientRouter;
