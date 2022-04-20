@@ -1,3 +1,47 @@
-const Patient = require("../models/clinicianModel");
+const Clinician = require("../models/clinicianModel");
 
-module.exports = {};
+const getClinicianById = async (id) => {
+  try {
+    const clinician = await Clinician.findById(id).lean();
+    if (!clinician) {
+      return null;
+    }
+    return clinician;
+  } catch (err) {
+    return null;
+  }
+};
+
+const getClinicianDashboard = async (req, res) => {
+  const clinician = await getClinicianById(req.params.id);
+  if (clinician) {
+    return res.render("clinician/clinician-dashboard", {
+      title: "Dashboard",
+    });
+  }
+  return res.sendStatus(404);
+};
+
+const getClinicianLogin = (req, res) => {
+  res.render("clinician/clinician-login", {
+    title: "Login",
+  });
+};
+
+const postClinicianLogin = async (req, res) => {
+  const clinician = await Clinician.findOne({ email: req.body.email }).lean();
+  if (
+    clinician &&
+    clinician.password &&
+    clinician.password == req.body.password
+  ) {
+    return res.redirect(`/clinician/${clinician._id}/dashboard`);
+  }
+  return res.redirect("/clinician");
+};
+
+module.exports = {
+  getClinicianLogin,
+  postClinicianLogin,
+  getClinicianDashboard,
+};
