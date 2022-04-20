@@ -1,4 +1,17 @@
 const Clinician = require("../models/clinicianModel");
+const Patient = require("../models/patientModel");
+
+const getAllPatientsForClincianId = async (id) => {
+  try {
+    const patients = await Patient.find({ clinician: id });
+    if (!patients) {
+      return null;
+    }
+    return patients;
+  } catch (err) {
+    return null;
+  }
+};
 
 const getClinicianById = async (id) => {
   try {
@@ -15,6 +28,7 @@ const getClinicianById = async (id) => {
 const getClinicianDashboard = async (req, res) => {
   const clinician = await getClinicianById(req.params.id);
   if (clinician) {
+    const patients = await getAllPatientsForClincianId(clinician._id);
     return res.render("clinician/clinician-dashboard", {
       title: "Dashboard",
     });
