@@ -1,15 +1,26 @@
 const Patient = require("../models/patientModel");
 
-const getPatientById = async (req, res, next) => {
+const getPatientById = async (id) => {
   try {
-    const patient = await Patient.findById(req.params.id).lean();
+    const patient = await Patient.findById(id).lean();
     if (!patient) {
-      return res.sendStatus(404);
+      return null;
     }
-    return res.send(patient);
+    return patient;
   } catch (err) {
-    return next(err);
+    return null;
   }
+};
+
+const getPatientDashboard = async (req, res) => {
+  const patient = await getPatientById(req.params.id);
+  if (patient) {
+    return res.render("patient/patient-dashboard", {
+      title: "Dashboard",
+    });
+  }
+
+  return res.sendStatus(404);
 };
 
 const getPatientLogin = (req, res) => {
@@ -21,9 +32,9 @@ const getPatientLogin = (req, res) => {
 const postPatientLogin = async (req, res) => {
   const patient = await Patient.findOne({ email: req.body.email }).lean();
   if (patient && patient.password && patient.password == req.body.password) {
-    res.redirect(`/patient/${patient._id}`);
+    return res.redirect(`/patient/${patient._id}/dashboard`);
   }
-  res.redirect("/patient/");
+  return res.redirect("/patient");
 };
 
-module.exports = { getPatientById, getPatientLogin, postPatientLogin };
+module.exports = { getPatientDashboard, getPatientLogin, postPatientLogin };
