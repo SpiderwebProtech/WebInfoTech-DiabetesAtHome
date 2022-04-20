@@ -13,7 +13,6 @@ const getPatientById = async (req, res, next) => {
 };
 
 const getPatientLogin = (req, res) => {
-  console.log("Login page called");
   res.render("patient/patient-login", {
     title: "Login",
   });
@@ -24,6 +23,7 @@ const postPatientLogin = async (req, res) => {
   if (patient && patient.password && patient.password == req.body.password) {
     res.redirect(`/patient/${patient._id}`);
   }
+  res.redirect("/patient/");
 };
 
 module.exports = { getPatientById, getPatientLogin, postPatientLogin };
