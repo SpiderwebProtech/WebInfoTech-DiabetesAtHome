@@ -32,6 +32,8 @@ const getPatientDashboard = async (req, res) => {
   if (patient) {
     return res.render("patient/patient-dashboard", {
       title: "Dashboard",
+      patient: patient,
+      patientDay: patientDay,
     });
   }
 
@@ -52,7 +54,18 @@ const postPatientLogin = async (req, res) => {
   res.redirect("back");
 };
 
-const postPatientDay = (req, res) => {
+const postPatientDay = async (req, res) => {
+  await PatientDay.findOneAndUpdate(
+    { patient: req.params.id, date: dateFunctions.getCurrentDate() },
+    {
+      bloodGlucose: req.body.bloodGlucose,
+      insulinDoses: req.body.insulinDoses,
+      weight: req.body.weight,
+      exercise: req.body.exercise,
+      $setOnInsert: { date: dateFunctions.getCurrentDate() },
+    },
+    { upsert: true, new: true, setDefaultsOnInsert: true }
+  );
   return res.redirect("back");
 };
 
