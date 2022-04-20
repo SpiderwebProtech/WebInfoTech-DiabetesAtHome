@@ -7,8 +7,71 @@
   </nav>
   <main>
     <form name="dayform" id="dayform" action="postday" method="post">
-      <label for="hello">Hello:</label>
-      <input type="text" id="hello" name="hello" /><br /><br />
+      {{#if patient.bloodGlucoseRequired}}
+        <label for="bloodGlucose">Blood Glucose:</label>
+        {{#if patientDay.bloodGlucose}}
+          <input
+            type="number"
+            id="bloodGlucose"
+            name="bloodGlucose"
+            value={{patientDay.bloodGlucose}}
+            readonly
+          />
+        {{else}}
+          <input type="number" id="bloodGlucose" name="bloodGlucose" />
+        {{/if}}
+        <br /><br />
+      {{/if}}
+
+      {{#if patient.insulinDosesRequired}}
+        <label for="insulinDoses">Insulin Doses:</label>
+        {{#if patientDay.insulinDoses}}
+          <input
+            type="number"
+            id="insulinDoses"
+            name="insulinDoses"
+            value={{patientDay.insulinDoses}}
+            readonly
+          />
+        {{else}}
+          <input type="number" id="insulinDoses" name="insulinDoses" />
+        {{/if}}
+        <br /><br />
+      {{/if}}
+
+      {{#if patient.weightRequired}}
+        <label for="weight">Weight:</label>
+        {{#if patientDay.insulinDoses}}
+          <input
+            type="number"
+            id="weight"
+            name="weight"
+            value={{patientDay.weight}}
+            readonly
+          />
+        {{else}}
+          <input type="number" id="weight" name="weight" />
+        {{/if}}
+        <br /><br />
+      {{/if}}
+
+      {{#if patient.exerciseRequired}}
+        <label for="exercise">Exercise:</label>
+        {{#if patientDay.insulinDoses}}
+          <input
+            type="number"
+            id="exercise"
+            name="exercise"
+            value={{patientDay.exercise}}
+            readonly
+          />
+        {{else}}
+          <input type="number" id="exercise" name="exercise" />
+        {{/if}}
+        <br /><br />
+      {{/if}}
+
+      <input type="submit" value="Submit" />
     </form>
   </main>
   <footer>
