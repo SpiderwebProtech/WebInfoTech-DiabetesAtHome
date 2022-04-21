@@ -15,10 +15,18 @@
         <th>Exercise</th>
         <th></th>
       </tr>
-      {{#each patients}}
-      <tr>
-        <td>{{this.name}}</td>
-      </tr>
+      {{#each combined}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.bloodGlucose}}</td>
+          <td>{{this.insulinDoses}}</td>
+          <td>{{this.weight}}</td>
+          <td>{{this.exercise}}</td>
+          <td><a
+              class="View"
+              href="/clinician/{{this.clinician}}/{{this._id}}"
+            >View</a></td>
+        </tr>
       {{/each}}
     </table>
   </main>
