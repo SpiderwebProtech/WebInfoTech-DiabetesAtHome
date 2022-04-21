@@ -1,9 +1,12 @@
+const patientController = require("../controllers/patientDayController");
+
 const Clinician = require("../models/clinicianModel");
+const PatientDay = require("../models/patientDayModel");
 const Patient = require("../models/patientModel");
 
 const getAllPatientsForClincianId = async (id) => {
   try {
-    const patients = await Patient.find({ clinician: id });
+    const patients = await Patient.find({ clinician: id }).lean();
     if (!patients) {
       return null;
     }
@@ -25,12 +28,34 @@ const getClinicianById = async (id) => {
   }
 };
 
+const getAllPatientDaysForPatients = async (patientIds) => {
+  const patientDays = await Promise.all(
+    patientIds.map(async (id) =>
+      patientController.getPatientDayByPatientIdToday(id)
+    )
+  );
+  return patientDays;
+};
+
+const combinePatientAndDays = (patients, patientDays) => {
+  const combined = [];
+  for (let i = 0; i < patients.length; i++) {
+    combined.push(Object.assign(patients[i], patientDays[i]));
+  }
+  return combined;
+};
+
 const getClinicianDashboard = async (req, res) => {
   const clinician = await getClinicianById(req.params.id);
   if (clinician) {
     const patients = await getAllPatientsForClincianId(clinician._id);
+    const patientDays = await getAllPatientDaysForPatients(
+      patients.map((patient) => patient._id)
+    );
+    const combined = combinePatientAndDays(patients, patientDays);
     return res.render("clinician/clinician-dashboard", {
       title: "Dashboard",
+      combined: combined,
     });
   }
   return res.sendStatus(404);
