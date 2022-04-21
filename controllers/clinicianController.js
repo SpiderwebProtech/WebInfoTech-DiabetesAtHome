@@ -1,7 +1,6 @@
-const patientController = require("../controllers/patientDayController");
+const patientController = require("../controllers/patientController");
 
 const Clinician = require("../models/clinicianModel");
-const PatientDay = require("../models/patientDayModel");
 const Patient = require("../models/patientModel");
 
 const getAllPatientsForClincianId = async (id) => {
@@ -61,6 +60,14 @@ const getClinicianDashboard = async (req, res) => {
   return res.sendStatus(404);
 };
 
+const getClinicanPatientDashboard = async (req, res) => {
+  const clinician = await getClinicianById(req.params.clinicianID);
+  return res.render("clinician/clinician-patient-view", {
+    title: "Patient View",
+    clinician: clinician,
+  });
+};
+
 const getClinicianLogin = (req, res) => {
   res.render("clinician/clinician-login", {
     title: "Login",
@@ -83,4 +90,5 @@ module.exports = {
   getClinicianLogin,
   postClinicianLogin,
   getClinicianDashboard,
+  getClinicanPatientDashboard,
 };
