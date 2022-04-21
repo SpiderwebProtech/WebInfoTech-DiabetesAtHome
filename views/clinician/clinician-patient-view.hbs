@@ -1,0 +1,26 @@
+<body>
+  <header>
+    <h1>Diabetes@Home</h1>
+  </header>
+  <nav>
+    <a class="button" href="/">Home</a>
+    <a
+      class="button"
+      href="/clinician/{{clinician._id}}/dashboard"
+    >Dashboard</a>
+  </nav>
+  <main>
+    <form name="bloodGlucose" id="bloodGlucose" action="postform" method="post">
+      <label for="required">Required: </label>
+      <input
+        type="checkbox"
+        id="required"
+        name="required"
+        value={{patient.bloodGlucoseRequired}}
+      />
+    </form>
+  </main>
+  <footer>
+    <h3>This website has been designed by SpiderWebProTech</h3>
+  </footer>
+</body>
