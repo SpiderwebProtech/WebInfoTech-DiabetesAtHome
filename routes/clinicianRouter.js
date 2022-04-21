@@ -12,4 +12,9 @@ clinicianRouter.get(
   clinicianController.getClinicianDashboard
 );
 
+clinicianRouter.get(
+  "/:clinicianID/:patientID",
+  clinicianController.getClinicanPatientDashboard
+);
+
 module.exports = clinicianRouter;
