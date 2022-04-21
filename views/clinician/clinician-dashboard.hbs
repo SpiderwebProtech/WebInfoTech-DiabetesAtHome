@@ -6,6 +6,21 @@
     <a class="button" href="/">Home</a>
   </nav>
   <main>
+    <table>
+      <tr>
+        <th>Patient</th>
+        <th>Blood Glucose</th>
+        <th>Insulin Doses</th>
+        <th>Weight</th>
+        <th>Exercise</th>
+        <th></th>
+      </tr>
+      {{#each patients}}
+      <tr>
+        <td>{{this.name}}</td>
+      </tr>
+      {{/each}}
+    </table>
   </main>
   <footer>
     <h3>This website has been designed by SpiderWebProTech</h3>
