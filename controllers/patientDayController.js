@@ -3,7 +3,7 @@ const dateFunctions = require("../public/javascript/dateFunctions");
 const PatientDay = require("../models/patientDayModel");
 
 const getPatientDayByPatientIdToday = async (id) => {
-  const today = dateFunctions.getCurrentDate();
+  const today = dateFunctions.getMelbourneDate();
   try {
     const patientDay = await PatientDay.findOne({
       patient: id,

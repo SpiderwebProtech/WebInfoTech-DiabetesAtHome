@@ -8,67 +8,151 @@
   <main>
     <form name="dayform" id="dayform" action="postday" method="post">
       {{#if patient.bloodGlucoseRequired}}
-        <label for="bloodGlucose">Blood Glucose:</label>
-        {{#if patientDay.bloodGlucose}}
-          <input
-            type="number"
-            id="bloodGlucose"
-            name="bloodGlucose"
-            value={{patientDay.bloodGlucose}}
-            readonly
-          />
-        {{else}}
-          <input type="number" id="bloodGlucose" name="bloodGlucose" />
-        {{/if}}
-        <br /><br />
+        <div>
+
+          <label for="bloodGlucose">Blood Glucose:</label>
+          {{#if patientDay.bloodGlucose}}
+            <input
+              type="number"
+              id="bloodGlucose"
+              name="bloodGlucose"
+              value={{patientDay.bloodGlucose}}
+              readonly
+            />
+          {{else}}
+            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+          {{/if}}
+
+          <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
+          {{#if patientDay.bloodGlucoseComment}}
+            <input
+              readonly
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+              value="{{patientDay.bloodGlucoseComment}}"
+            />
+          {{else}}
+            <input
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+            />
+          {{/if}}
+
+          <br /><br />
+        </div>
       {{/if}}
 
-      {{#if patient.insulinDosesRequired}}
-        <label for="insulinDoses">Insulin Doses:</label>
-        {{#if patientDay.insulinDoses}}
-          <input
-            type="number"
-            id="insulinDoses"
-            name="insulinDoses"
-            value={{patientDay.insulinDoses}}
-            readonly
-          />
-        {{else}}
-          <input type="number" id="insulinDoses" name="insulinDoses" />
-        {{/if}}
-        <br /><br />
+      {{#if patient.bloodGlucoseRequired}}
+        <div>
+
+          <label for="bloodGlucose">Blood Glucose:</label>
+          {{#if patientDay.bloodGlucose}}
+            <input
+              type="number"
+              id="bloodGlucose"
+              name="bloodGlucose"
+              value={{patientDay.bloodGlucose}}
+              readonly
+            />
+          {{else}}
+            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+          {{/if}}
+
+          <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
+          {{#if patientDay.bloodGlucoseComment}}
+            <input
+              readonly
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+              value="{{patientDay.bloodGlucoseComment}}"
+            />
+          {{else}}
+            <input
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+            />
+          {{/if}}
+
+          <br /><br />
+        </div>
       {{/if}}
 
-      {{#if patient.weightRequired}}
-        <label for="weight">Weight:</label>
-        {{#if patientDay.insulinDoses}}
-          <input
-            type="number"
-            id="weight"
-            name="weight"
-            value={{patientDay.weight}}
-            readonly
-          />
-        {{else}}
-          <input type="number" id="weight" name="weight" />
-        {{/if}}
-        <br /><br />
+      {{#if patient.bloodGlucoseRequired}}
+        <div>
+
+          <label for="bloodGlucose">Blood Glucose:</label>
+          {{#if patientDay.bloodGlucose}}
+            <input
+              type="number"
+              id="bloodGlucose"
+              name="bloodGlucose"
+              value={{patientDay.bloodGlucose}}
+              readonly
+            />
+          {{else}}
+            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+          {{/if}}
+
+          <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
+          {{#if patientDay.bloodGlucoseComment}}
+            <input
+              readonly
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+              value="{{patientDay.bloodGlucoseComment}}"
+            />
+          {{else}}
+            <input
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+            />
+          {{/if}}
+
+          <br /><br />
+        </div>
       {{/if}}
 
-      {{#if patient.exerciseRequired}}
-        <label for="exercise">Exercise:</label>
-        {{#if patientDay.insulinDoses}}
-          <input
-            type="number"
-            id="exercise"
-            name="exercise"
-            value={{patientDay.exercise}}
-            readonly
-          />
-        {{else}}
-          <input type="number" id="exercise" name="exercise" />
-        {{/if}}
-        <br /><br />
+      {{#if patient.bloodGlucoseRequired}}
+        <div>
+
+          <label for="bloodGlucose">Blood Glucose:</label>
+          {{#if patientDay.bloodGlucose}}
+            <input
+              type="number"
+              id="bloodGlucose"
+              name="bloodGlucose"
+              value={{patientDay.bloodGlucose}}
+              readonly
+            />
+          {{else}}
+            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+          {{/if}}
+
+          <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
+          {{#if patientDay.bloodGlucoseComment}}
+            <input
+              readonly
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+              value="{{patientDay.bloodGlucoseComment}}"
+            />
+          {{else}}
+            <input
+              type="text"
+              id="bloodGlucoseComment"
+              name="bloodGlucoseComment"
+            />
+          {{/if}}
+
+          <br /><br />
+        </div>
       {{/if}}
 
       <input type="submit" value="Submit" />
