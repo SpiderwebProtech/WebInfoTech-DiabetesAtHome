@@ -126,6 +126,7 @@ const postPatientDay = async (req, res) => {
   await PatientDay.findOneAndUpdate(
     { patient: req.params.id, date: dateFunctions.getMelbourneDate() },
     {
+
       bloodGlucose: req.body.bloodGlucose,
       bloodGlucoseTime: bloodGlucoseTime,
       bloodGlucoseComment: req.body.bloodGlucoseComment,
@@ -158,4 +159,5 @@ module.exports = {
   getPatientLogin,
   postPatientLogin,
   postPatientDay,
+  getPatientById,
 };

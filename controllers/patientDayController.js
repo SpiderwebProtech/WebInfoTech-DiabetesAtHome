@@ -47,7 +47,7 @@ const getPatientHistoryById = async (id) => {
       return null;
     }
     // const filledPatientHistory = fillEmptyPatientDays(patientHistory)
-    return filledPatientHistory;
+    return patientHistory;
   } catch (err) {
     return null;
   }

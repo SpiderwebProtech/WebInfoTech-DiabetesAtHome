@@ -62,12 +62,16 @@ const getClinicianDashboard = async (req, res) => {
 };
 
 const getClinicanPatientDashboard = async (req, res) => {
-  patientDayController.getPatientHistoryById(req.params.patientID);
-  const clinician = await getClinicianById(req.params.clinicianID);
+  const patientHistory = await patientDayController.getPatientHistoryById(req.params.patientID);
+  const clinician = await getClinicianById(req.params.clinicianID)[0];
+  const patient = await patientController.getPatientById(req.params.patientID)[0];
   return res.render("clinician/clinician-patient-view", {
     title: "Patient View",
     clinician: clinician,
+    patientHistory: patientHistory,
+    patient: patient,
   });
+
 };
 
 const getClinicianLogin = (req, res) => {

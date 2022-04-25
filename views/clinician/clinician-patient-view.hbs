@@ -10,15 +10,74 @@
     >Dashboard</a>
   </nav>
   <main>
-    <form name="bloodGlucose" id="bloodGlucose" action="postform" method="post">
-      <label for="required">Required: </label>
-      <input
-        type="checkbox"
-        id="required"
-        name="required"
-        value={{patient.bloodGlucoseRequired}}
-      />
-    </form>
+    <h3 class="centered-heading">{{patient.name}}</h3>
+    <div class="flex flex-space-around">
+      <table class="clinician-styled-table"> 
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Blood Glucose</th>
+            <th>Insulin Doses</th>
+            <th>Weight</th>
+            <th>Exercise</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each patientHistory}}
+            <tr>
+              <td>{{this.date}}</td>
+              <td>{{this.bloodGlucose}}</td>
+              <td>{{this.insulinDoses}}</td>
+              <td>{{this.weight}}</td>
+              <td>{{this.exercise}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <table class="clinician-styled-table">
+        <thead>
+          <tr>
+          <th>Date</th>
+          <th>Comment</th>
+          <th>Field</th>
+        </tr>
+        </thead>
+        <tbody>
+          {{#each patientHistory}}
+          {{#if this.bloodGlucoseComment }}
+          <tr>
+            <td>{{this.date}}</td>
+            <td>{{this.bloodGlucoseComment}}</td>
+            <td>Blood Glucose</td>
+          </tr>
+          {{/if}}
+          {{#if this.insulinDosesComment }}
+          <tr>
+            <td>{{this.date}}</td>
+            <td>{{this.insulinDosesComment}}</td>
+            <td>Insulin Doses</td>
+          </tr>
+          {{/if}}
+          {{#if this.weightComment }}
+          <tr>
+            <td>{{this.date}}</td>
+            <td>{{this.weightComment}}</td>
+            <td>Weight</td>
+          </tr>
+          {{/if}}
+          {{#if this.exerciseComment }}
+          <tr>
+            <td>{{this.date}}</td>
+            <td>{{this.exerciseComment}}</td>
+            <td>Exercise</td>
+          </tr>
+          {{/if}}
+          {{/each}}
+        </tbody>
+
+        
+    </table>
+    </div>
   </main>
   <footer>
     <h3>This website has been designed by SpiderWebProTech</h3>
