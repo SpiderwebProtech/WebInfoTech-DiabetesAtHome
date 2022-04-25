@@ -31,7 +31,7 @@ const getClinicianById = async (id) => {
 const getAllPatientDaysForPatients = async (patientIds) => {
   const patientDays = await Promise.all(
     patientIds.map(async (id) =>
-      patientDayController.getPatientDayByPatientIdToday(id)
+      patientDayController.getPatientDayByPatientIdTodayDropId(id)
     )
   );
   return patientDays;
@@ -62,6 +62,7 @@ const getClinicianDashboard = async (req, res) => {
 };
 
 const getClinicanPatientDashboard = async (req, res) => {
+  patientDayController.getPatientHistoryById(req.params.patientID);
   const clinician = await getClinicianById(req.params.clinicianID);
   return res.render("clinician/clinician-patient-view", {
     title: "Patient View",
