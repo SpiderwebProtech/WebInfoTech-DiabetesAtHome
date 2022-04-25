@@ -55,28 +55,73 @@ const postPatientLogin = async (req, res) => {
 };
 
 const postPatientDay = async (req, res) => {
-  const bloodGlucoseTime = req.body.bloodGlucose
-    ? dateFunctions.getMelbourneTime()
-    : null;
-  const bloodGlucoseCommentTime = req.body.bloodGlucoseComment
-    ? dateFunctions.getMelbourneTime()
-    : null;
-  const insulinDosesTime = req.body.insulinDoses
-    ? dateFunctions.getMelbourneTime()
-    : null;
-  const insulinDosesCommentTime = req.body.insulinDosesComment
-    ? dateFunctions.getMelbourneTime()
-    : null;
-  const weightTime = req.body.weight ? dateFunctions.getMelbourneTime() : null;
-  const weightCommentTime = req.body.weightComment
-    ? dateFunctions.getMelbourneTime()
-    : null;
-  const exerciseTime = req.body.exercise
-    ? dateFunctions.getMelbourneTime()
-    : null;
-  const exerciseCommentTime = req.body.exerciseComment
-    ? dateFunctions.getMelbourneTime()
-    : null;
+  const patientDay = await PatientDay.findOne({
+    patient: req.params.id,
+    date: dateFunctions.getMelbourneDate(),
+  }).lean();
+  const patientDayExists = !!patientDay;
+
+  const bloodGlucoseTime =
+    req.body.bloodGlucose && patientDayExists && !patientDay.bloodGlucoseTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.bloodGlucoseTime
+      ? patientDay.bloodGlucoseTime
+      : null;
+
+  const bloodGlucoseCommentTime =
+    req.body.bloodGlucoseComment &&
+    patientDayExists &&
+    !patientDay.bloodGlucoseCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.bloodGlucoseCommentTime
+      ? patientDay.bloodGlucoseCommentTime
+      : null;
+
+  const insulinDosesTime =
+    req.body.insulinDoses && patientDayExists && !patientDay.insulinDosesTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.insulinDosesTime
+      ? patientDay.insulinDosesTime
+      : null;
+
+  const insulinDosesCommentTime =
+    req.body.insulinDosesComment &&
+    patientDayExists &&
+    !patientDay.insulinDosesCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.insulinDosesCommentTime
+      ? patientDay.insulinDosesCommentTime
+      : null;
+
+  const weightTime =
+    req.body.weight && patientDayExists && !patientDay.weightTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.weightTime
+      ? patientDay.weightTime
+      : null;
+
+  const weightCommentTime =
+    req.body.weightComment && patientDayExists && !patientDay.weightCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.weightCommentTime
+      ? patientDay.weightCommentTime
+      : null;
+
+  const exerciseTime =
+    req.body.exercise && patientDayExists && !patientDay.exerciseTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.exerciseTime
+      ? patientDay.exerciseTime
+      : null;
+
+  const exerciseCommentTime =
+    req.body.exerciseComment &&
+    patientDayExists &&
+    !patientDay.exerciseCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.exerciseCommentTime
+      ? patientDay.exerciseCommentTime
+      : null;
 
   await PatientDay.findOneAndUpdate(
     { patient: req.params.id, date: dateFunctions.getMelbourneDate() },
