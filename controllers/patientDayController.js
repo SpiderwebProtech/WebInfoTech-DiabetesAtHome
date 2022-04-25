@@ -39,7 +39,6 @@ const getPatientDayByPatientIdTodayDropId = async (id) => {
 };
 
 const getPatientHistoryById = async (id) => {
-  const date = dateFunctions.getMelbourneDate();
   try {
     const patientHistory = await PatientDay.find({ patient: id })
       .sort({ date: -1 })
@@ -47,13 +46,19 @@ const getPatientHistoryById = async (id) => {
     if (!patientHistory) {
       return null;
     }
-    // console.log(patientHistory.slice(-1)[0].date)
-    // const dateArray = dateFunctions.getDates(dateFunctions.getProperDate(patientHistory.slice(-1)[0].date), dateFunctions.getProperDate(date))
-    // console.log(dateArray)
-    return patientHistory;
+    // const filledPatientHistory = fillEmptyPatientDays(patientHistory)
+    return filledPatientHistory;
   } catch (err) {
     return null;
   }
+};
+
+const fillEmptyPatientDays = (patientHistory) => {
+  const today = dateFunctions.getMelbourneDate();
+  const firstDay = patientHistory.slice(-1)[0].date;
+  const dateArray = dateFunctions.getDates(new Date(firstDay), new Date(today));
+
+  return patientHistory;
 };
 
 module.exports = {
