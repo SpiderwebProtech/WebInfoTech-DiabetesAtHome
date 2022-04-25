@@ -8,17 +8,17 @@ body {
   grid-template-rows: 200px 6fr 150px;
   grid-gap: 1rem;
 
-  grid-template-areas: 
-      "header header"
-      "nav main"
-      "footer footer";
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "footer footer";
 }
 
 header {
   grid-area: header;
   padding: 60px;
   text-align: center;
-  background: #2699FB;
+  background: #2699fb;
   color: white;
   font-size: 30px;
 }
@@ -26,18 +26,17 @@ header {
 nav {
   grid-area: nav;
   text-align: center;
-  background: #BCE0FD
+  background: #bce0fd;
 }
 
 main {
   grid-area: main;
-  background: #F1F9FF
-  
+  background: #f1f9ff;
 }
 
 footer {
   font: normal 14px Arial;
-  background: #7FC4FD;
+  background: #7fc4fd;
   grid-area: footer;
   text-align: center;
 }
@@ -67,14 +66,14 @@ h3 {
 }
 
 .clinician-styled-table thead tr {
-  background-color: #7FC4FD;
+  background-color: #7fc4fd;
   color: #ffffff;
   text-align: left;
 }
 
 .clinician-styled-table th,
 .clinician-styled-table td {
-    padding: 12px 15px;
+  padding: 12px 15px;
 }
 
 .clinician-styled-table tbody tr {
@@ -82,11 +81,11 @@ h3 {
 }
 
 .clinician-styled-table tbody tr:nth-of-type(even) {
-  background-color: #F1F9FF;
+  background-color: #f1f9ff;
 }
 
 .clinician-styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #7FC4FD;
+  border-bottom: 2px solid #7fc4fd;
 }
 
 p {
@@ -94,7 +93,7 @@ p {
 }
 
 .button {
-  background-color: #7FC4FD;
+  background-color: #7fc4fd;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -106,7 +105,7 @@ p {
 }
 
 .centered-heading {
-  text-align: center
+  text-align: center;
 }
 
 .flex {
@@ -127,9 +126,9 @@ p {
 
 .founder-box {
   width: 250px;
-	margin: 10px;
-	padding: 10px;
-  background: #7FC4FD;
+  margin: 10px;
+  padding: 10px;
+  background: #7fc4fd;
   text-align: center;
   border-radius: 25px;
 }
