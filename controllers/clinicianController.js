@@ -1,4 +1,5 @@
 const patientController = require("../controllers/patientController");
+const patientDayController = require("../controllers/patientDayController");
 
 const Clinician = require("../models/clinicianModel");
 const Patient = require("../models/patientModel");
@@ -30,7 +31,7 @@ const getClinicianById = async (id) => {
 const getAllPatientDaysForPatients = async (patientIds) => {
   const patientDays = await Promise.all(
     patientIds.map(async (id) =>
-      patientController.getPatientDayByPatientIdToday(id)
+      patientDayController.getPatientDayByPatientIdToday(id)
     )
   );
   return patientDays;
