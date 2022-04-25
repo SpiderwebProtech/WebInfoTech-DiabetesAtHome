@@ -44,36 +44,36 @@
         </div>
       {{/if}}
 
-      {{#if patient.bloodGlucoseRequired}}
+      {{#if patient.insulinDosesRequired}}
         <div>
 
-          <label for="bloodGlucose">Blood Glucose:</label>
-          {{#if patientDay.bloodGlucose}}
+          <label for="insulinDoses">Insulin doses:</label>
+          {{#if patientDay.insulinDoses}}
             <input
               type="number"
-              id="bloodGlucose"
-              name="bloodGlucose"
-              value={{patientDay.bloodGlucose}}
+              id="insulinDoses"
+              name="insulinDoses"
+              value={{patientDay.insulinDoses}}
               readonly
             />
           {{else}}
-            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+            <input type="number" id="insulinDoses" name="insulinDoses" />
           {{/if}}
 
-          <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
-          {{#if patientDay.bloodGlucoseComment}}
+          <label for="insulinDosesComment">Insulin Doses Comment:</label>
+          {{#if patientDay.insulinDosesComment}}
             <input
               readonly
               type="text"
-              id="bloodGlucoseComment"
-              name="bloodGlucoseComment"
-              value="{{patientDay.bloodGlucoseComment}}"
+              id="insulinDosesComment"
+              name="insulinDosesComment"
+              value="{{patientDay.insulinDosesComment}}"
             />
           {{else}}
             <input
               type="text"
-              id="bloodGlucoseComment"
-              name="bloodGlucoseComment"
+              id="insulinDosesComment"
+              name="insulinDosesComment"
             />
           {{/if}}
 
@@ -81,74 +81,66 @@
         </div>
       {{/if}}
 
-      {{#if patient.bloodGlucoseRequired}}
+      {{#if patient.weightRequired}}
         <div>
 
-          <label for="bloodGlucose">Blood Glucose:</label>
-          {{#if patientDay.bloodGlucose}}
+          <label for="weight">Weight:</label>
+          {{#if patientDay.weight}}
             <input
               type="number"
-              id="bloodGlucose"
-              name="bloodGlucose"
-              value={{patientDay.bloodGlucose}}
+              id="weight"
+              name="weight"
+              value={{patientDay.weight}}
               readonly
             />
           {{else}}
-            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+            <input type="number" id="weight" name="weight" />
           {{/if}}
 
-          <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
-          {{#if patientDay.bloodGlucoseComment}}
+          <label for="weightComment">Weight Comment:</label>
+          {{#if patientDay.weightComment}}
             <input
               readonly
               type="text"
-              id="bloodGlucoseComment"
-              name="bloodGlucoseComment"
-              value="{{patientDay.bloodGlucoseComment}}"
+              id="weightComment"
+              name="weightComment"
+              value="{{patientDay.weightComment}}"
             />
           {{else}}
-            <input
-              type="text"
-              id="bloodGlucoseComment"
-              name="bloodGlucoseComment"
-            />
+            <input type="text" id="weightComment" name="weightComment" />
           {{/if}}
 
           <br /><br />
         </div>
       {{/if}}
 
-      {{#if patient.bloodGlucoseRequired}}
+      {{#if patient.exerciseRequired}}
         <div>
 
-          <label for="bloodGlucose">Blood Glucose:</label>
-          {{#if patientDay.bloodGlucose}}
+          <label for="exercise">Exercise:</label>
+          {{#if patientDay.exercise}}
             <input
               type="number"
-              id="bloodGlucose"
-              name="bloodGlucose"
-              value={{patientDay.bloodGlucose}}
+              id="exercise"
+              name="exercise"
+              value={{patientDay.exercise}}
               readonly
             />
           {{else}}
-            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+            <input type="number" id="exercise" name="exercise" />
           {{/if}}
 
-          <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
-          {{#if patientDay.bloodGlucoseComment}}
+          <label for="exerciseComment">Exercise Comment:</label>
+          {{#if patientDay.exerciseComment}}
             <input
               readonly
               type="text"
-              id="bloodGlucoseComment"
-              name="bloodGlucoseComment"
-              value="{{patientDay.bloodGlucoseComment}}"
+              id="exerciseComment"
+              name="exerciseComment"
+              value="{{patientDay.exerciseComment}}"
             />
           {{else}}
-            <input
-              type="text"
-              id="bloodGlucoseComment"
-              name="bloodGlucoseComment"
-            />
+            <input type="text" id="exerciseComment" name="exerciseComment" />
           {{/if}}
 
           <br /><br />
