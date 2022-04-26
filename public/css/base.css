@@ -144,6 +144,14 @@ p {
   flex-direction: column;
 }
 
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: start;
+}
+
 .founder-box {
   width: 250px;
   margin: 10px;
