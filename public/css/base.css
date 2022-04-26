@@ -1,12 +1,13 @@
 * {
-  font: normal 14px Arial;
+  font: normal 1rem Arial;
 }
 
 body {
   display: grid;
-  grid-template-columns: 1fr 6fr;
-  grid-template-rows: 200px 6fr 150px;
-  grid-gap: 1rem;
+  height: 100vh;
+  grid-template-columns: minmax(4rem, 10vw) 90vw;
+  grid-template-rows: 15vh 75vh 8vh;
+  grid-gap: 1vh;
 
   grid-template-areas:
     "header header"
@@ -16,26 +17,28 @@ body {
 
 header {
   grid-area: header;
-  padding: 60px;
+  padding: 3vh;
   text-align: center;
   background: #2699fb;
   color: white;
-  font-size: 30px;
 }
 
 nav {
   grid-area: nav;
   text-align: center;
   background: #bce0fd;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   grid-area: main;
   background: #f1f9ff;
+  overflow-y: auto;
 }
 
 footer {
-  font: normal 14px Arial;
+  font: normal 1.2rem Arial;
   background: #7fc4fd;
   grid-area: footer;
   text-align: center;
@@ -43,17 +46,17 @@ footer {
 
 h1 {
   font-weight: bold;
-  font-size: 52px;
+  font-size: 2.5rem;
 }
 
 h2 {
   font-weight: bold;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 h3 {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 
 .clinician-styled-table {
@@ -92,19 +95,32 @@ p {
   text-align: center;
 }
 
-.button {
+.nav-button {
   background-color: #7fc4fd;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 15px;
   margin: 10px 0px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
-.centered-heading {
+.button {
+  background-color: #7fc4fd;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 4px 2px;
+  border-radius: 4px;
+}
+
+.text-center {
   text-align: center;
 }
 
@@ -122,6 +138,10 @@ p {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.flex-column {
+  flex-direction: column;
 }
 
 .founder-box {
