@@ -61,8 +61,143 @@ const fillEmptyPatientDays = (patientHistory) => {
   return patientHistory;
 };
 
+const validateAndInsert = async (id, body) => {
+  const patientDay = await PatientDay.findOne({
+    patient: id,
+    date: dateFunctions.getMelbourneDate(),
+  }).lean();
+  const patientDayExists = !!patientDay;
+
+  const bloodGlucose =
+    patientDayExists && !!patientDay.bloodGlucose
+      ? patientDay.bloodGlucose
+      : body.bloodGlucose;
+
+  const bloodGlucoseTime =
+    body.bloodGlucose && patientDayExists && !patientDay.bloodGlucoseTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.bloodGlucoseTime
+      ? patientDay.bloodGlucoseTime
+      : null;
+
+  const bloodGlucoseComment =
+    patientDayExists && !!patientDay.bloodGlucoseComment
+      ? patientDay.bloodGlucoseComment
+      : body.bloodGlucoseComment;
+
+  const bloodGlucoseCommentTime =
+    body.bloodGlucoseComment &&
+    patientDayExists &&
+    !patientDay.bloodGlucoseCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.bloodGlucoseCommentTime
+      ? patientDay.bloodGlucoseCommentTime
+      : null;
+
+  const insulinDoses =
+    patientDayExists && !!patientDay.insulinDoses
+      ? patientDay.insulinDoses
+      : body.insulinDoses;
+
+  const insulinDosesTime =
+    body.insulinDoses && patientDayExists && !patientDay.insulinDosesTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.insulinDosesTime
+      ? patientDay.insulinDosesTime
+      : null;
+
+  const insulinDosesComment =
+    patientDayExists && !!patientDay.insulinDosesComment
+      ? patientDay.insulinDosesComment
+      : body.insulinDosesComment;
+
+  const insulinDosesCommentTime =
+    body.insulinDosesComment &&
+    patientDayExists &&
+    !patientDay.insulinDosesCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.insulinDosesCommentTime
+      ? patientDay.insulinDosesCommentTime
+      : null;
+
+  const weight =
+    patientDayExists && !!patientDay.weight ? patientDay.weight : body.weight;
+
+  const weightTime =
+    body.weight && patientDayExists && !patientDay.weightTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.weightTime
+      ? patientDay.weightTime
+      : null;
+
+  const weightComment =
+    patientDayExists && !!patientDay.weightComment
+      ? patientDay.weightComment
+      : body.weightComment;
+
+  const weightCommentTime =
+    body.weightComment && patientDayExists && !patientDay.weightCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.weightCommentTime
+      ? patientDay.weightCommentTime
+      : null;
+
+  const exercise =
+    patientDayExists && !!patientDay.exercise
+      ? patientDay.exercise
+      : body.exercise;
+
+  const exerciseTime =
+    body.exercise && patientDayExists && !patientDay.exerciseTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.exerciseTime
+      ? patientDay.exerciseTime
+      : null;
+
+  const exerciseComment =
+    patientDayExists && !!patientDay.exerciseComment
+      ? patientDay.exerciseComment
+      : body.exerciseComment;
+
+  const exerciseCommentTime =
+    body.exerciseComment && patientDayExists && !patientDay.exerciseCommentTime
+      ? dateFunctions.getMelbourneTime()
+      : patientDayExists && patientDay.exerciseCommentTime
+      ? patientDay.exerciseCommentTime
+      : null;
+
+  await PatientDay.findOneAndUpdate(
+    { patient: id, date: dateFunctions.getMelbourneDate() },
+    {
+      bloodGlucose: bloodGlucose,
+      bloodGlucoseTime: bloodGlucoseTime,
+      bloodGlucoseComment: bloodGlucoseComment,
+      bloodGlucoseCommentTime: bloodGlucoseCommentTime,
+
+      insulinDoses: insulinDoses,
+      insulinDosesTime: insulinDosesTime,
+      insulinDosesComment: insulinDosesComment,
+      insulinDosesCommentTime: insulinDosesCommentTime,
+
+      weight: weight,
+      weightTime: weightTime,
+      weightComment: weightComment,
+      weightCommentTime: weightCommentTime,
+
+      exercise: exercise,
+      exerciseTime: exerciseTime,
+      exerciseComment: exerciseComment,
+      exerciseCommentTime: exerciseCommentTime,
+
+      $setOnInsert: { date: dateFunctions.getMelbourneDate() },
+    },
+    { upsert: true, new: true, setDefaultsOnInsert: true }
+  );
+};
+
 module.exports = {
   getPatientDayByPatientIdToday,
   getPatientDayByPatientIdTodayDropId,
   getPatientHistoryById,
+  validateAndInsert,
 };

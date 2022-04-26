@@ -66,9 +66,7 @@ const getClinicanPatientDashboard = async (req, res) => {
     req.params.patientID
   );
   const clinician = await getClinicianById(req.params.clinicianID)[0];
-  const patient = await patientController.getPatientById(
-    req.params.patientID
-  )[0];
+  const patient = await patientController.getPatientById(req.params.patientID);
   return res.render("clinician/clinician-patient-view", {
     title: "Patient View",
     clinician: clinician,

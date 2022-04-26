@@ -3,18 +3,24 @@
     <h1>Diabetes@Home</h1>
   </header>
   <nav>
-    <a class="button" href="/">Home</a>
-    <a class="button" href="/patient/about-this-website">About Us</a>
-    <a class="button" href="/patient/about-diabetes">About Diabetes</a>
+    <a class="nav-button" href="/">Home</a>
+    <a class="nav-button" href="/patient/about-this-website">About Us</a>
+    <a class="nav-button" href="/patient/about-diabetes">About Diabetes</a>
   </nav>
   <main>
-    <form name="loginform" id="loginform" action="login" method="post">
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email" /><br /><br />
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" /><br /><br />
-      <input type="submit" value="Submit" />
-    </form>
+    <div class="flex flex-space-around">
+      <form name="loginform" id="loginform" action="login" method="post">
+        <div class="flex flex-column text-center">
+          <br />
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" /><br />
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" /><br />
+          <input type="submit" value="Submit" />
+          <br />
+        </div>
+      </form>
+    </div>
   </main>
   <footer>
     <h3>This website has been designed by SpiderWebProTech</h3>
