@@ -59,6 +59,10 @@ h3 {
   font-size: 1.2rem;
 }
 
+.text-danger {
+  color: red;
+}
+
 .clinician-styled-table {
   border-collapse: collapse;
   margin: 25px 0;

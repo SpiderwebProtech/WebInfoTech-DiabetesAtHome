@@ -19,6 +19,9 @@ hbs.handlebars.registerHelper({
   or() {
     return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
   },
+  outRange: (lower, higher, value) => {
+    return (lower && lower > value) || (higher && higher < value);
+  },
 });
 
 app.use(express.static("public"));

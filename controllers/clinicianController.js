@@ -68,6 +68,7 @@ const getClinicanPatientDashboard = async (req, res) => {
   );
   const clinician = await getClinicianById(req.params.clinicianID);
   const patient = await patientController.getPatientById(req.params.patientID);
+  console.log(patient);
   return res.render("clinician/clinician-patient-view", {
     title: "Patient View",
     clinician: clinician,
@@ -104,7 +105,6 @@ const getClinicanPatientThresholds = async (req, res) => {
 };
 
 const postClinicanPatientThresholds = async (req, res) => {
-  console.log(req.body);
   await Patient.findByIdAndUpdate(req.params.patientID, {
     $set: {
       bloodGlucoseRequired: !!req.body.bloodGlucoseRequired,
