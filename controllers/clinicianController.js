@@ -55,6 +55,7 @@ const getClinicianDashboard = async (req, res) => {
     const combined = combinePatientAndDays(patients, patientDays);
     return res.render("clinician/clinician-dashboard", {
       title: "Dashboard",
+      clinician: clinician,
       combined: combined,
     });
   }
@@ -66,9 +67,7 @@ const getClinicanPatientDashboard = async (req, res) => {
     req.params.patientID
   );
   const clinician = await getClinicianById(req.params.clinicianID)[0];
-  const patient = await patientController.getPatientById(
-    req.params.patientID
-  )[0];
+  const patient = await patientController.getPatientById(req.params.patientID);
   return res.render("clinician/clinician-patient-view", {
     title: "Patient View",
     clinician: clinician,
