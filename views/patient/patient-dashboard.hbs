@@ -20,7 +20,12 @@
               readonly
             />
           {{else}}
-            <input type="number" id="bloodGlucose" name="bloodGlucose" />
+            <input
+              type="number"
+              id="bloodGlucose"
+              name="bloodGlucose"
+              step="0.01"
+            />
           {{/if}}
 
           <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
@@ -94,7 +99,7 @@
               readonly
             />
           {{else}}
-            <input type="number" id="weight" name="weight" />
+            <input type="number" id="weight" name="weight" step="0.01" />
           {{/if}}
 
           <label for="weightComment">Weight Comment:</label>
