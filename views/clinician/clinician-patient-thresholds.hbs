@@ -14,6 +14,7 @@
     >{{patient.name}}</a>
   </nav>
   <main>
+    <h3 class="text-center">{{patient.name}}'s Thresholds</h3>
     <div class="flex flex-space-around">
       <div class="shadow-box">
         <form
@@ -31,6 +32,7 @@
                 id="bloodGlucoseLower"
                 name="bloodGlucoseLower"
                 step="0.01"
+                value="{{patient.bloodGlucoseLow}}"
               />
             </div>
             <div class="flex flex-column form-line-field">
@@ -40,6 +42,7 @@
                 id="bloodGlucoseUpper"
                 name="bloodGlucoseUpper"
                 step="0.01"
+                value="{{patient.bloodGlucoseHigh}}"
               />
             </div>
             <div class="flex flex-column form-line-field">
@@ -48,6 +51,9 @@
                 type="checkbox"
                 id="bloodGlucoseRequired"
                 name="bloodGlucoseRequired"
+                {{#if patient.bloodGlucoseRequired}}
+                checked
+                {{/if}}
               />
             </div>
           </div>
@@ -60,6 +66,7 @@
                 type="number"
                 id="insulinDosesLower"
                 name="insulinDosesLower"
+                value="{{patient.insulinDosesLow}}"
               />
             </div>
             <div class="flex flex-column form-line-field">
@@ -68,6 +75,7 @@
                 type="number"
                 id="insulinDosesUpper"
                 name="insulinDosesUpper"
+                value="{{patient.insulinDosesHigh}}"
               />
             </div>
             <div class="flex flex-column form-line-field">
@@ -76,6 +84,9 @@
                 type="checkbox"
                 id="insulinDosesRequired"
                 name="insulinDosesRequired"
+                {{#if patient.insulinDosesRequired}}
+                checked
+                {{/if}}
               />
             </div>
           </div>
@@ -89,6 +100,7 @@
                 id="weightLower"
                 name="weightLower"
                 step="0.01"
+                value="{{patient.weightLow}}"
               />
             </div>
             <div class="flex flex-column form-line-field">
@@ -98,6 +110,7 @@
                 id="weightUpper"
                 name="weightUpper"
                 step="0.01"
+                value="{{patient.weightHigh}}"
               />
             </div>
             <div class="flex flex-column form-line-field">
@@ -106,6 +119,9 @@
                 type="checkbox"
                 id="weightRequired"
                 name="weightRequired"
+                {{#if patient.weightRequired}}
+                checked
+                {{/if}}
               />
             </div>
           </div>
@@ -114,11 +130,11 @@
             <h3>Exercise (steps)</h3>
             <div class="flex flex-column form-line-field">
               <label for="exerciseLower">Lower Threshold</label>
-              <input type="number" id="exerciseLower" name="exerciseLower" />
+              <input type="number" id="exerciseLower" name="exerciseLower" value="{{patient.exerciseLow}}" />
             </div>
             <div class="flex flex-column form-line-field">
               <label for="exerciseUpper">Upper Threshold</label>
-              <input type="number" id="exerciseUpper" name="exerciseUpper" />
+              <input type="number" id="exerciseUpper" name="exerciseUpper" value="{{patient.exerciseHigh}}" />
             </div>
             <div class="flex flex-column form-line-field">
               <label for="exerciseRequired">Required</label>
@@ -126,6 +142,9 @@
                 type="checkbox"
                 id="exerciseRequired"
                 name="exerciseRequired"
+                {{#if patient.exerciseRequired}}
+                checked
+                {{/if}}
               />
             </div>
           </div>

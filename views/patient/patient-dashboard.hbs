@@ -20,40 +20,27 @@
             <div class="flex flex-space-around flex-wrap form-line">
               <div class="flex flex-column form-line-field">
                 <label for="bloodGlucose">Blood Glucose (nmol/L):</label>
-                {{#if patientDay.bloodGlucose}}
                   <input
                     type="number"
                     id="bloodGlucose"
                     name="bloodGlucose"
+                    {{#if patientDay.bloodGlucose}}
                     value={{patientDay.bloodGlucose}}
                     readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input
-                    type="number"
-                    id="bloodGlucose"
-                    name="bloodGlucose"
-                    step="0.01"
-                  />
-                {{/if}}
               </div>
               <div class="flex flex-column form-line-field">
                 <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
-                {{#if patientDay.bloodGlucoseComment}}
                   <input
-                    readonly
                     type="text"
                     id="bloodGlucoseComment"
                     name="bloodGlucoseComment"
+                    {{#if patientDay.bloodGlucoseComment}}
                     value="{{patientDay.bloodGlucoseComment}}"
+                    readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input
-                    type="text"
-                    id="bloodGlucoseComment"
-                    name="bloodGlucoseComment"
-                  />
-                {{/if}}
               </div>
             </div>
           {{/if}}
@@ -63,35 +50,27 @@
               <div class="flex flex-column form-line-field">
 
                 <label for="insulinDoses">Insulin doses:</label>
-                {{#if patientDay.insulinDoses}}
                   <input
                     type="number"
                     id="insulinDoses"
                     name="insulinDoses"
+                    {{#if patientDay.insulinDoses}}
                     value={{patientDay.insulinDoses}}
                     readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input type="number" id="insulinDoses" name="insulinDoses" />
-                {{/if}}
               </div>
               <div class="flex flex-column form-line-field">
                 <label for="insulinDosesComment">Insulin Doses Comment:</label>
-                {{#if patientDay.insulinDosesComment}}
                   <input
-                    readonly
                     type="text"
                     id="insulinDosesComment"
                     name="insulinDosesComment"
+                    {{#if patientDay.insulinDosesComment}}
                     value="{{patientDay.insulinDosesComment}}"
+                    readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input
-                    type="text"
-                    id="insulinDosesComment"
-                    name="insulinDosesComment"
-                  />
-                {{/if}}
               </div>
             </div>
           {{/if}}
@@ -99,75 +78,60 @@
           {{#if patient.weightRequired}}
             <div class="flex flex-space-around flex-wrap form-line">
               <div class="flex flex-column form-line-field">
-
                 <label for="weight">Weight (kg):</label>
-                {{#if patientDay.weight}}
                   <input
                     type="number"
                     id="weight"
                     name="weight"
+                    {{#if patientDay.weight}}
                     value={{patientDay.weight}}
                     readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input type="number" id="weight" name="weight" step="0.01" />
-                {{/if}}
               </div>
               <div class="flex flex-column form-line-field">
                 <label for="weightComment">Weight Comment:</label>
-                {{#if patientDay.weightComment}}
                   <input
-                    readonly
                     type="text"
                     id="weightComment"
                     name="weightComment"
+                    {{#if patientDay.weightComment}}
                     value="{{patientDay.weightComment}}"
+                    readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input type="text" id="weightComment" name="weightComment" />
-                {{/if}}
-              </div>
+            </div>
             </div>
           {{/if}}
 
           {{#if patient.exerciseRequired}}
             <div class="flex flex-space-around flex-wrap form-line">
               <div class="flex flex-column form-line-field">
-
                 <label for="exercise">Exercise (steps):</label>
-                {{#if patientDay.exercise}}
                   <input
                     type="number"
                     id="exercise"
                     name="exercise"
+                    {{#if patientDay.exercise}}
                     value={{patientDay.exercise}}
                     readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input type="number" id="exercise" name="exercise" />
-                {{/if}}
               </div>
               <div class="flex flex-column form-line-field">
                 <label for="exerciseComment">Exercise Comment:</label>
-                {{#if patientDay.exerciseComment}}
                   <input
-                    readonly
                     type="text"
                     id="exerciseComment"
                     name="exerciseComment"
+                    {{#if patientDay.exerciseComment}}
                     value="{{patientDay.exerciseComment}}"
+                    readonly
+                    {{/if}}
                   />
-                {{else}}
-                  <input
-                    type="text"
-                    id="exerciseComment"
-                    name="exerciseComment"
-                  />
-                {{/if}}
               </div>
             </div>
           {{/if}}
-
           <button type="submit">Submit</button>
         </form>
       </div>

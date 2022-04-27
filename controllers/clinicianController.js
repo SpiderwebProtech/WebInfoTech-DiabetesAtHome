@@ -104,12 +104,13 @@ const getClinicanPatientThresholds = async (req, res) => {
 };
 
 const postClinicanPatientThresholds = async (req, res) => {
+  console.log(req.body);
   await Patient.findByIdAndUpdate(req.params.patientID, {
     $set: {
-      bloodGlucoseRequired: req.body.bloodGlucoseRequired,
-      weightRequired: req.body.weightRequired,
-      insulinDosesRequired: req.body.insulinDosesRequired,
-      exerciseRequired: req.body.exerciseRequired,
+      bloodGlucoseRequired: !!req.body.bloodGlucoseRequired,
+      weightRequired: !!req.body.weightRequired,
+      insulinDosesRequired: !!req.body.insulinDosesRequired,
+      exerciseRequired: !!req.body.exerciseRequired,
       bloodGlucoseLow: req.body.bloodGlucoseLower,
       weightLow: req.body.weightLower,
       insulinDosesLow: req.body.insulinDosesLower,
