@@ -103,10 +103,31 @@ const getClinicanPatientThresholds = async (req, res) => {
   });
 };
 
+const postClinicanPatientThresholds = async (req, res) => {
+  await Patient.findByIdAndUpdate(req.params.patientID, {
+    $set: {
+      bloodGlucoseRequired: req.body.bloodGlucoseRequired,
+      weightRequired: req.body.weightRequired,
+      insulinDosesRequired: req.body.insulinDosesRequired,
+      exerciseRequired: req.body.exerciseRequired,
+      bloodGlucoseLow: req.body.bloodGlucoseLower,
+      weightLow: req.body.weightLower,
+      insulinDosesLow: req.body.insulinDosesLower,
+      exerciseLow: req.body.exerciseLower,
+      bloodGlucoseHigh: req.body.bloodGlucoseUpper,
+      weightHigh: req.body.weightUpper,
+      insulinDosesHigh: req.body.insulinDosesUpper,
+      exerciseHigh: req.body.exerciseUpper,
+    },
+  });
+  return res.redirect("back");
+};
+
 module.exports = {
   getClinicianLogin,
   postClinicianLogin,
   getClinicianDashboard,
   getClinicanPatientDashboard,
   getClinicanPatientThresholds,
+  postClinicanPatientThresholds,
 };

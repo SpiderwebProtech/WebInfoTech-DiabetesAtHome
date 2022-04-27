@@ -16,10 +16,10 @@ clinicianRouter.get(
   "/:clinicianID/:patientID/thresholds",
   clinicianController.getClinicanPatientThresholds
 );
-// clinicianRouter.post(
-//   "/:clinicianID/:patientID/thresholds",
-//   clinicianController.postClinicanPatientThresholds
-// );
+clinicianRouter.post(
+  "/:clinicianID/:patientID/thresholds",
+  clinicianController.postClinicanPatientThresholds
+);
 
 clinicianRouter.get(
   "/:clinicianID/:patientID",

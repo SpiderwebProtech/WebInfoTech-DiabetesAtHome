@@ -4,6 +4,14 @@
   </header>
   <nav>
     <a class="nav-button" href="/">Home</a>
+    <a
+      class="nav-button"
+      href="/clinician/{{clinician._id}}/dashboard"
+    >Dashboard</a>
+    <a
+      class="nav-button"
+      href="/clinician/{{clinician._id}}/{{patient._id}}"
+    >{{patient.name}}</a>
   </nav>
   <main>
     <div class="flex flex-space-around">
