@@ -19,7 +19,7 @@
           {{#if patient.bloodGlucoseRequired}}
             <div class="flex flex-space-around flex-wrap form-line">
               <div class="flex flex-column form-line-field">
-                <label for="bloodGlucose">Blood Glucose:</label>
+                <label for="bloodGlucose">Blood Glucose (nmol/L):</label>
                 {{#if patientDay.bloodGlucose}}
                   <input
                     type="number"
@@ -100,7 +100,7 @@
             <div class="flex flex-space-around flex-wrap form-line">
               <div class="flex flex-column form-line-field">
 
-                <label for="weight">Weight:</label>
+                <label for="weight">Weight (kg):</label>
                 {{#if patientDay.weight}}
                   <input
                     type="number"
@@ -134,7 +134,7 @@
             <div class="flex flex-space-around flex-wrap form-line">
               <div class="flex flex-column form-line-field">
 
-                <label for="exercise">Exercise:</label>
+                <label for="exercise">Exercise (steps):</label>
                 {{#if patientDay.exercise}}
                   <input
                     type="number"

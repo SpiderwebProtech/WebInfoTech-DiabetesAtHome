@@ -11,6 +11,10 @@
   </nav>
   <main>
     <h3 class="text-center">Detailed view for {{patient.name}}</h3>
+    <a
+      class="button"
+      href="/clinician/{{clinician._id}}/{{patient._id}}/thresholds"
+    >Update Thresholds</a>
     <div class="flex flex-space-around">
       <table class="clinician-styled-table">
         <thead>
@@ -18,8 +22,8 @@
             <th>Date</th>
             <th>Blood Glucose</th>
             <th>Insulin Doses</th>
-            <th>Weight</th>
-            <th>Exercise</th>
+            <th>Weight (kg)</th>
+            <th>Exercise (steps)</th>
           </tr>
         </thead>
         <tbody>

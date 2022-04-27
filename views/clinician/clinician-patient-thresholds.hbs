@@ -1,0 +1,133 @@
+<body>
+  <header>
+    <h1>Diabetes@Home</h1>
+  </header>
+  <nav>
+    <a class="nav-button" href="/">Home</a>
+  </nav>
+  <main>
+    <div class="flex flex-space-around">
+      <div class="shadow-box">
+        <form
+          class="styled-form"
+          name="thresholdform"
+          id="thresholdform"
+          method="post"
+        >
+          <div class="flex flex-space-around flex-wrap form-line">
+            <h3>Blood Glucose (nmol/L)</h3>
+            <div class="flex flex-column form-line-field">
+              <label for="bloodGlucoseLower">Lower Threshold</label>
+              <input
+                type="number"
+                id="bloodGlucoseLower"
+                name="bloodGlucoseLower"
+                step="0.01"
+              />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="bloodGlucoseUpper">Upper Threshold</label>
+              <input
+                type="number"
+                id="bloodGlucoseUpper"
+                name="bloodGlucoseUpper"
+                step="0.01"
+              />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="bloodGlucoseRequired">Required</label>
+              <input
+                type="checkbox"
+                id="bloodGlucoseRequired"
+                name="bloodGlucoseRequired"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-space-around flex-wrap form-line">
+            <h3>Insulin Doses</h3>
+            <div class="flex flex-column form-line-field">
+              <label for="insulinDosesLower">Lower Threshold</label>
+              <input
+                type="number"
+                id="insulinDosesLower"
+                name="insulinDosesLower"
+              />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="insulinDosesUpper">Upper Threshold</label>
+              <input
+                type="number"
+                id="insulinDosesUpper"
+                name="insulinDosesUpper"
+              />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="insulinDosesRequired">Required</label>
+              <input
+                type="checkbox"
+                id="insulinDosesRequired"
+                name="insulinDosesRequired"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-space-around flex-wrap form-line">
+            <h3>Weight (kg)</h3>
+            <div class="flex flex-column form-line-field">
+              <label for="weightLower">Lower Threshold</label>
+              <input
+                type="number"
+                id="weightLower"
+                name="weightLower"
+                step="0.01"
+              />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="weightUpper">Upper Threshold</label>
+              <input
+                type="number"
+                id="weightUpper"
+                name="weightUpper"
+                step="0.01"
+              />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="weightRequired">Required</label>
+              <input
+                type="checkbox"
+                id="weightRequired"
+                name="weightRequired"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-space-around flex-wrap form-line">
+            <h3>Exercise (steps)</h3>
+            <div class="flex flex-column form-line-field">
+              <label for="exerciseLower">Lower Threshold</label>
+              <input type="number" id="exerciseLower" name="exerciseLower" />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="exerciseUpper">Upper Threshold</label>
+              <input type="number" id="exerciseUpper" name="exerciseUpper" />
+            </div>
+            <div class="flex flex-column form-line-field">
+              <label for="exerciseRequired">Required</label>
+              <input
+                type="checkbox"
+                id="exerciseRequired"
+                name="exerciseRequired"
+              />
+            </div>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <h3>This website has been designed by SpiderWebProTech</h3>
+  </footer>
+</body>

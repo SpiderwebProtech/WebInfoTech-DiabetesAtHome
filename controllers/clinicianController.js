@@ -66,7 +66,7 @@ const getClinicanPatientDashboard = async (req, res) => {
   const patientHistory = await patientDayController.getPatientHistoryById(
     req.params.patientID
   );
-  const clinician = await getClinicianById(req.params.clinicianID)[0];
+  const clinician = await getClinicianById(req.params.clinicianID);
   const patient = await patientController.getPatientById(req.params.patientID);
   return res.render("clinician/clinician-patient-view", {
     title: "Patient View",
@@ -91,7 +91,16 @@ const postClinicianLogin = async (req, res) => {
   ) {
     return res.redirect(`/clinician/${clinician._id}/dashboard`);
   }
-  return res.redirect("/clinician");
+  return res.redirect("back");
+};
+
+const getClinicanPatientThresholds = async (req, res) => {
+  const clinician = await getClinicianById(req.params.clinicianID);
+  const patient = await patientController.getPatientById(req.params.patientID);
+  return res.render("clinician/clinician-patient-thresholds", {
+    patient: patient,
+    clinician: clinician,
+  });
 };
 
 module.exports = {
@@ -99,4 +108,5 @@ module.exports = {
   postClinicianLogin,
   getClinicianDashboard,
   getClinicanPatientDashboard,
+  getClinicanPatientThresholds,
 };
