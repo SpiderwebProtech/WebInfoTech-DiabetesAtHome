@@ -91,6 +91,40 @@ h3 {
   border-bottom: 2px solid #7fc4fd;
 }
 
+.shadow-box {
+  width: fit-content;
+  margin: 1rem 2rem;
+  background-color: #bce0fd;
+  padding: 1rem 2rem 1.5rem;
+  border-radius: 4px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+}
+
+.form-line {
+  width: auto;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 2rem 0.5rem;
+  background-color: #f1f9ff;
+  border-radius: 4px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.form-line-field {
+  width: auto;
+  padding: 0.2rem 1rem;
+  text-align: center;
+}
+
+.styled-form button[type="submit"] {
+  display: block;
+  margin: 20px auto 0;
+  width: 150px;
+  height: 40px;
+  border-radius: 25px;
+  background-color: #7fc4fd;
+  box-shadow: 1px 4px 10px 1px rgba(0, 0, 0, 0.15);
+}
+
 p {
   text-align: center;
 }
