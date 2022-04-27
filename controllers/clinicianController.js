@@ -55,6 +55,7 @@ const getClinicianDashboard = async (req, res) => {
     const combined = combinePatientAndDays(patients, patientDays);
     return res.render("clinician/clinician-dashboard", {
       title: "Dashboard",
+      clinician: clinician,
       combined: combined,
     });
   }
