@@ -8,63 +8,65 @@
   <main>
     <h3 class="text-center">Welcome {{clinician.name}}</h3>
     <div class="flex flex-space-around">
-      <table class="clinician-styled-table">
-        <thead>
-          <tr>
-            <th>Patient</th>
-            <th>Blood Glucose</th>
-            <th>Insulin Doses</th>
-            <th>Weight (kg)</th>
-            <th>Exercise (steps)</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each combined}}
+      <div class="vh60-scroll">
+        <table class="clinician-styled-table">
+          <thead>
             <tr>
-              <td>{{this.name}}</td>
-              <td>
-                {{#if (outRange this.bloodGlucoseLow this.bloodGlucoseHigh this.bloodGlucose)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.bloodGlucose}}
-                  </span>
-              </td>
-              <td>
-                {{#if (outRange this.insulinDosesLow this.insulinDosesHigh this.insulinDoses)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.insulinDoses}}
-                  </span>
-              </td><td>
-                {{#if (outRange this.weightLow this.weightHigh this.weight)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.weight}}
-                  </span>
-              </td><td>
-                {{#if (outRange this.exerciseLow this.exerciseHigh this.exercise)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.exercise}}
-                  </span>
-              </td>
-              <td><a
-                  class="View"
-                  href="/clinician/{{this.clinician}}/{{this._id}}"
-                >View</a></td>
+              <th>Patient</th>
+              <th>Blood Glucose</th>
+              <th>Insulin Doses</th>
+              <th>Weight (kg)</th>
+              <th>Exercise (steps)</th>
+              <th></th>
             </tr>
-          {{/each}}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {{#each combined}}
+              <tr>
+                <td>{{this.name}}</td>
+                <td>
+                  {{#if (outRange this.bloodGlucoseLow this.bloodGlucoseHigh this.bloodGlucose)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.bloodGlucose}}
+                    </span>
+                </td>
+                <td>
+                  {{#if (outRange this.insulinDosesLow this.insulinDosesHigh this.insulinDoses)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.insulinDoses}}
+                    </span>
+                </td><td>
+                  {{#if (outRange this.weightLow this.weightHigh this.weight)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.weight}}
+                    </span>
+                </td><td>
+                  {{#if (outRange this.exerciseLow this.exerciseHigh this.exercise)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.exercise}}
+                    </span>
+                </td>
+                <td><a
+                    class="View"
+                    href="/clinician/{{this.clinician}}/{{this._id}}"
+                  >View</a></td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
   </main>
   <footer>

@@ -5,7 +5,7 @@
 body {
   display: grid;
   height: 100vh;
-  grid-template-columns: minmax(4rem, 10vw) 90vw;
+  grid-template-columns: 10vw 90vw;
   grid-template-rows: 15vh 75vh 8vh;
   grid-gap: 1vh;
 
@@ -17,7 +17,7 @@ body {
 
 header {
   grid-area: header;
-  padding: 3vh 16vh;
+  padding: 3vh 11vw;
   text-align: left;
   background: #2699fb;
   color: white;
@@ -218,21 +218,42 @@ p {
   border-radius: 25px;
 }
 
-@media (max-width: 375px) {
+.vh60-scroll {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+@media (max-width: 376px) {
   .founder-box {
     width: 160px;
   }
   header {
-    padding: 3vh;
     text-align: center;
   }
 
-  h1{
+  h1 {
     font-size: 1.5rem;
   }
-}
 
-.vh60-scroll{
-  max-height:60vh; 
-  overflow:auto;
+  body {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 15vw 83vw;
+    grid-template-rows: 15vh 75vh 8vh;
+    grid-gap: 1vh;
+
+    grid-template-areas:
+      "header header"
+      "nav main"
+      "footer footer";
+  }
+
+  .nav-button {
+    text-align: left;
+    padding: 15px 4px;
+  }
+
+  nav {
+    text-align: left;
+  }
 }
