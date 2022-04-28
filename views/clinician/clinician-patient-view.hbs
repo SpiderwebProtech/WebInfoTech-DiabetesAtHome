@@ -3,14 +3,18 @@
     <h1>Diabetes@Home</h1>
   </header>
   <nav>
-    <a class="button" href="/">Home</a>
+    <a class="nav-button" href="/">Home</a>
     <a
-      class="button"
+      class="nav-button"
       href="/clinician/{{clinician._id}}/dashboard"
     >Dashboard</a>
+    <a
+      class="nav-button"
+      href="/clinician/{{clinician._id}}/{{patient._id}}/thresholds"
+    >Update Thresholds</a>
   </nav>
   <main>
-    <h3 class="centered-heading">{{patient.name}}</h3>
+    <h3 class="text-center">Detailed view for {{patient.name}}</h3>
     <div class="flex flex-space-around">
       <table class="clinician-styled-table">
         <thead>
@@ -18,18 +22,48 @@
             <th>Date</th>
             <th>Blood Glucose</th>
             <th>Insulin Doses</th>
-            <th>Weight</th>
-            <th>Exercise</th>
+            <th>Weight (kg)</th>
+            <th>Exercise (steps)</th>
           </tr>
         </thead>
         <tbody>
           {{#each patientHistory}}
             <tr>
               <td>{{this.date}}</td>
-              <td>{{this.bloodGlucose}}</td>
-              <td>{{this.insulinDoses}}</td>
-              <td>{{this.weight}}</td>
-              <td>{{this.exercise}}</td>
+              <td>
+                {{#if (outRange ../patient.bloodGlucoseLow ../patient.bloodGlucoseHigh this.bloodGlucose)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.bloodGlucose}}
+                  </span>
+              </td>
+              <td>
+                {{#if (outRange ../patient.insulinDosesLow ../patient.insulinDosesHigh this.insulinDoses)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.insulinDoses}}
+                  </span>
+              </td><td>
+                {{#if (outRange ../patient.weightLow ../patient.weightHigh this.weight)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.weight}}
+                  </span>
+              </td><td>
+                {{#if (outRange ../patient.exerciseLow ../patient.exerciseHigh this.exercise)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.exercise}}
+                  </span>
+              </td>
             </tr>
           {{/each}}
         </tbody>
