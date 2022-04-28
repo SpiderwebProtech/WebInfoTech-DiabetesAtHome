@@ -16,21 +16,22 @@
   <main>
     <h3 class="text-center">Detailed view for {{patient.name}}</h3>
     <div class="flex flex-space-around">
+      <div class="vh60-scroll">
       <table class="clinician-styled-table">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Blood Glucose</th>
-            <th>Insulin Doses</th>
-            <th>Weight (kg)</th>
-            <th>Exercise (steps)</th>
+            <th width="20%">Date</th>
+            <th width="20%">Blood Glucose</th>
+            <th width="20%">Insulin Doses</th>
+            <th width="20%">Weight (kg)</th>
+            <th width="20%">Exercise (steps)</th>
           </tr>
         </thead>
         <tbody>
           {{#each patientHistory}}
             <tr>
-              <td>{{this.date}}</td>
-              <td>
+              <td width="20%">{{this.date}}</td>
+              <td width="20%">
                 {{#if (outRange ../patient.bloodGlucoseLow ../patient.bloodGlucoseHigh this.bloodGlucose)}}
                   <span class="text-danger">
                 {{else}}
@@ -39,7 +40,7 @@
                   {{this.bloodGlucose}}
                   </span>
               </td>
-              <td>
+              <td width="20%">
                 {{#if (outRange ../patient.insulinDosesLow ../patient.insulinDosesHigh this.insulinDoses)}}
                   <span class="text-danger">
                 {{else}}
@@ -47,7 +48,8 @@
                 {{/if}} 
                   {{this.insulinDoses}}
                   </span>
-              </td><td>
+              </td>
+              <td width="20%">
                 {{#if (outRange ../patient.weightLow ../patient.weightHigh this.weight)}}
                   <span class="text-danger">
                 {{else}}
@@ -55,7 +57,8 @@
                 {{/if}} 
                   {{this.weight}}
                   </span>
-              </td><td>
+              </td>
+              <td width="20%">
                 {{#if (outRange ../patient.exerciseLow ../patient.exerciseHigh this.exercise)}}
                   <span class="text-danger">
                 {{else}}
@@ -68,48 +71,50 @@
           {{/each}}
         </tbody>
       </table>
-      <table class="clinician-styled-table">
+      </div>
+      <div class="vh60-scroll">
+      <table class="clinician-styled-table" id="comments">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Comment</th>
-            <th>Field</th>
+            <th width="20%">Date</th>
+            <th width="60%">Comment</th>
+            <th width="20%">Field</th>
           </tr>
         </thead>
         <tbody>
           {{#each patientHistory}}
             {{#if this.bloodGlucoseComment}}
               <tr>
-                <td>{{this.date}}</td>
-                <td>{{this.bloodGlucoseComment}}</td>
-                <td>Blood Glucose</td>
+                <td width="20%">{{this.date}}</td>
+                <td width="60%">{{this.bloodGlucoseComment}}</td>
+                <td width="20%">Blood Glucose</td>
               </tr>
             {{/if}}
             {{#if this.insulinDosesComment}}
               <tr>
-                <td>{{this.date}}</td>
-                <td>{{this.insulinDosesComment}}</td>
-                <td>Insulin Doses</td>
+                <td width="20%">{{this.date}}</td>
+                <td width="60%">{{this.insulinDosesComment}}</td>
+                <td width="20%">Insulin Doses</td>
               </tr>
             {{/if}}
             {{#if this.weightComment}}
               <tr>
-                <td>{{this.date}}</td>
-                <td>{{this.weightComment}}</td>
-                <td>Weight</td>
+                <td width="20%">{{this.date}}</td>
+                <td width="60%">{{this.weightComment}}</td>
+                <td width="20%">Weight</td>
               </tr>
             {{/if}}
             {{#if this.exerciseComment}}
               <tr>
-                <td>{{this.date}}</td>
-                <td>{{this.exerciseComment}}</td>
-                <td>Exercise</td>
+                <td width="20%">{{this.date}}</td>
+                <td width="60%">{{this.exerciseComment}}</td>
+                <td width="20%">Exercise</td>
               </tr>
             {{/if}}
           {{/each}}
         </tbody>
-
       </table>
+      </div>
     </div>
   </main>
   <footer>

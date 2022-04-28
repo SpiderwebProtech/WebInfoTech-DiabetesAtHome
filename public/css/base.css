@@ -17,8 +17,8 @@ body {
 
 header {
   grid-area: header;
-  padding: 3vh;
-  text-align: center;
+  padding: 3vh 16vh;
+  text-align: left;
   background: #2699fb;
   color: white;
 }
@@ -68,8 +68,12 @@ h3 {
   margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
-  min-width: 400px;
+  min-width: 300px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.clinician-styled-table thead {
+  height: 60px;
 }
 
 .clinician-styled-table thead tr {
@@ -218,4 +222,17 @@ p {
   .founder-box {
     width: 160px;
   }
+  header {
+    padding: 3vh;
+    text-align: center;
+  }
+
+  h1{
+    font-size: 1.5rem;
+  }
+}
+
+.vh60-scroll{
+  max-height:60vh; 
+  overflow:auto;
 }
