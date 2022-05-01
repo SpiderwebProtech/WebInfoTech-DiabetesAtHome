@@ -1,5 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const flash = require("express-flash");
+const session = require("express-session");
 
 require("./models");
 
@@ -27,6 +29,7 @@ hbs.handlebars.registerHelper({
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(flash());
 app.engine(
   "hbs",
   exphbs.engine({
