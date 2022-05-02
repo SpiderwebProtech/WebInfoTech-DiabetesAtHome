@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
+const userModel = require("./userModel");
 
 const patientSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  user: userModel,
   name: { type: String, required: true },
   clinician: {
     type: mongoose.Schema.Types.ObjectId,
