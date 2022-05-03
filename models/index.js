@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  dbName: "demo",
+  dbName: "userTest",
 });
 
 // Exit on error
@@ -20,3 +20,4 @@ db.once("open", async () => {
 });
 
 require("./patientModel");
+require("./clinicianModel");
