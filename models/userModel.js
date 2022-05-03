@@ -1,14 +1,20 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const schema = new mongoose.Schema({
+const patientSchema = require("./patientModel").schema;
+const clinicianSchema = require("./clinicianModel").schema;
+
+const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
-  secret: { type: String, required: true },
+  isPatient: { type: Boolean, default: false },
+  isClinician: { type: Boolean, default: false },
+  patientFields: { patientSchema, required: false },
+  clinicianFields: { clinicianSchema, required: false },
 });
 
-schema.methods.verifyPassword = function (password, callback) {
+userSchema.methods.verifyPassword = function (password, callback) {
   bcrypt.compare(password, this.password, (err, valid) => {
     callback(err, valid);
   });
@@ -16,7 +22,7 @@ schema.methods.verifyPassword = function (password, callback) {
 
 const SALT_FACTOR = 10;
 
-schema.pre("save", function save(next) {
+userSchema.pre("save", function save(next) {
   const user = this;
   if (!user.isModified("password")) {
     return next();
@@ -30,6 +36,6 @@ schema.pre("save", function save(next) {
   });
 });
 
-const model = mongoose.model("User", schema);
+const userModel = mongoose.model("User", schema);
 
-module.exports = { schema, model };
+module.exports = userModel;

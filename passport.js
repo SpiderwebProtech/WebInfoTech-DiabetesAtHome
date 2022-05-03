@@ -1,33 +1,38 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-const User = require("./models/userModel");
+const User = require("./models/userModel").model;
+const Patient = require("./models/patientModel").model;
+const Clinician = require("./models/clinicianModel").model;
 
-User.model.find({}, (err, users) => {
-  if (users.length > 0) return;
-  User.model.create(
-    {
-      name: "test",
-      email: "test@test.com",
-      password: "hashed!",
-      secret: "INFO30005",
-    },
-    (err) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log("Dummy user inserted");
-    }
-  );
-});
+// Clinician.create({
+//     user: {
+//         email: 'chris@chris.com',
+//         password: 'clinicianChris',
+//         name: 'Clinician Chris',
+//     },
+//     patients: [],
+// })
+
+// Patient.create({
+//     user: {
+//         email: 'pat@pat.com',
+//         password: 'PasswordPat',
+//         name: 'Patient Pat',
+//     },
+//     clinician: '6270d6e601ef8064afd1fe45',
+//     bloodGlucoseRequired: true,
+//     weightRequired: true,
+//     insulinDosesRequired: true,
+//     exerciseRequired: true,
+// })
 
 passport.serializeUser((user, done) => {
   done(undefined, user._id);
 });
 
 passport.deserializeUser((userId, done) => {
-  User.model.findById(userId, { password: 0 }, (err, user) => {
+  Patient.findById(userId, { password: 0 }, (err, user) => {
     if (err) {
       return done(err, undefined);
     }
@@ -36,8 +41,9 @@ passport.deserializeUser((userId, done) => {
 });
 
 passport.use(
-  new LocalStrategy((username, password, done) => {
-    User.model.findOne({ username }, {}, {}, (err, user) => {
+  new LocalStrategy((email, password, done) => {
+    Patient.findOne({ user: { email: email } }, {}, {}, (err, user) => {
+      console.log(user);
       if (err) {
         return done(undefined, false, {
           message: "Unknown error has occurred",

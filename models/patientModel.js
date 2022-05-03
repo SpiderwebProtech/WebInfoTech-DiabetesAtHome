@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
-const user = require("./userModel");
 
 const schema = new mongoose.Schema({
-  user: {
-    type: user.schema,
-    default: {},
-  },
   clinician: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Clinician",
