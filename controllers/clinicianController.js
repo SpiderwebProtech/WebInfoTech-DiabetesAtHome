@@ -6,7 +6,7 @@ const Patient = require("../models/patientModel");
 
 const getAllPatientsForClincianId = async (id) => {
   try {
-    const patients = await Patient.find({ clinician: id }).lean();
+    const patients = await Patient.model.find({ clinician: id }).lean();
     if (!patients) {
       return null;
     }
@@ -104,7 +104,7 @@ const getClinicanPatientThresholds = async (req, res) => {
 };
 
 const postClinicanPatientThresholds = async (req, res) => {
-  await Patient.findByIdAndUpdate(req.params.patientID, {
+  await Patient.model.findByIdAndUpdate(req.params.patientID, {
     $set: {
       bloodGlucoseRequired: !!req.body.bloodGlucoseRequired,
       weightRequired: !!req.body.weightRequired,

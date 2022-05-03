@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/SpiderwebProtech/WebInfoTech#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
     "express": "^4.17.3",
     "express-flash": "^0.0.2",

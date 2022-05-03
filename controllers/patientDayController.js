@@ -6,10 +6,12 @@ const Patient = require("../models/patientModel");
 const getPatientDayByPatientIdToday = async (id) => {
   const today = dateFunctions.getMelbourneDate();
   try {
-    const patientDay = await PatientDay.findOne({
-      patient: id,
-      date: today,
-    }).lean();
+    const patientDay = await PatientDay.model
+      .findOne({
+        patient: id,
+        date: today,
+      })
+      .lean();
     if (!patientDay) {
       return null;
     }
@@ -22,13 +24,15 @@ const getPatientDayByPatientIdToday = async (id) => {
 const getPatientDayByPatientIdTodayDropId = async (id) => {
   const today = dateFunctions.getMelbourneDate();
   try {
-    const patientDay = await PatientDay.findOne(
-      {
-        patient: id,
-        date: today,
-      },
-      { _id: 0 }
-    ).lean();
+    const patientDay = await PatientDay.model
+      .findOne(
+        {
+          patient: id,
+          date: today,
+        },
+        { _id: 0 }
+      )
+      .lean();
     if (!patientDay) {
       return null;
     }
@@ -40,7 +44,8 @@ const getPatientDayByPatientIdTodayDropId = async (id) => {
 
 const getPatientHistoryById = async (id) => {
   try {
-    const patientHistory = await PatientDay.find({ patient: id })
+    const patientHistory = await PatientDay.model
+      .find({ patient: id })
       .sort({ date: -1 })
       .lean();
     if (!patientHistory) {
@@ -62,10 +67,12 @@ const fillEmptyPatientDays = (patientHistory) => {
 };
 
 const validateAndInsert = async (id, body) => {
-  const patientDay = await PatientDay.findOne({
-    patient: id,
-    date: dateFunctions.getMelbourneDate(),
-  }).lean();
+  const patientDay = await PatientDay.model
+    .findOne({
+      patient: id,
+      date: dateFunctions.getMelbourneDate(),
+    })
+    .lean();
   const patientDayExists = !!patientDay;
 
   const bloodGlucose =

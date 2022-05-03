@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const patientDaySchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
   patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patient",
@@ -24,6 +24,6 @@ const patientDaySchema = new mongoose.Schema({
   exerciseCommentTime: { type: String, default: null },
 });
 
-const PatientDay = mongoose.model("PatientDay", patientDaySchema);
+const model = mongoose.model("PatientDay", schema);
 
-module.exports = PatientDay;
+module.exports = { schema, model };

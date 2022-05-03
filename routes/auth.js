@@ -10,31 +10,26 @@ const isAuthenticated = (req, res, next) => {
   return next();
 };
 
-const hasRole = (thisRole) => {
-  return (req, res, next) => {
-    if (req.user.role == thisRole) return next();
-    else {
-      res.redirect("/");
-    }
-  };
-};
+router.get("/", isAuthenticated, (req, res) => {
+  res.render("index", { title: "Dashboard", user: req.user.toJSON });
+});
 
-// router.get('/clinician', isAuthenticated, (req, res) => {
-//     res.render('clinician/clinician-dashboard', { title: 'Dashboard', user: req.user})
-// })
+router.get("/login", (req, res) => {
+  res.render("auth/auth-login", { flash: "error", title: "Login" });
+});
 
-// router.get('/clinician/login', (req, res) => {
-//     res.render('clinician/clinician-login', { flash: req.flash('error'), title: 'Clinician Login'})
-// })
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
 
-// router.post('/clinician/login', passport.authenticate('local', {
-//     successRedirect: '/clinician', failureRedirect: '/clinician/login', failureFlash: true
-//     })
-// )
+router.post("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 
-// router.post('/clinician/logout', (req, res) => {
-//     req.logout()
-//     res.redirect('/')
-// })
-
-// modules.exports = router
+module.exports = router;

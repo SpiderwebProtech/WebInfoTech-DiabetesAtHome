@@ -30,6 +30,20 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(flash());
+app.use(
+  session({
+    // The secret used to sign session cookies (ADD ENV VAR)
+    secret: process.env.SESSION_SECRET || "keyboard cat",
+    name: "demo", // The cookie name (CHANGE THIS)
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      sameSite: "strict",
+      httpOnly: true,
+      secure: app.get("env") === "production",
+    },
+  })
+);
 app.engine(
   "hbs",
   exphbs.engine({
@@ -47,6 +61,16 @@ app.use((req, res, next) => {
   console.log("message arrived: " + req.method + " " + req.path);
   next();
 });
+
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1); // Trust first proxy
+}
+// Initialise Passport.js
+const passport = require("./passport");
+app.use(passport.authenticate("session"));
+// Load authentication router
+const authRouter = require("./routes/auth");
+app.use(authRouter);
 
 const patientRouter = require("./routes/patientRouter");
 const clinicianRouter = require("./routes/clinicianRouter");

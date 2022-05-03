@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
-const userModel = require("./userModel");
+const user = require("./userModel");
 
-const patientSchema = new mongoose.Schema({
-  user: userModel,
-  name: { type: String, required: true },
+const schema = new mongoose.Schema({
+  user: {
+    type: user.schema,
+    default: {},
+  },
   clinician: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Clinician",
@@ -23,6 +25,6 @@ const patientSchema = new mongoose.Schema({
   exerciseHigh: { type: Number },
 });
 
-const Patient = mongoose.model("Patient", patientSchema);
+const model = mongoose.model("Patient", schema);
 
-module.exports = Patient;
+module.exports = { schema, model };

@@ -7,7 +7,7 @@ const patientDayController = require("../controllers/patientDayController");
 
 const getPatientById = async (id) => {
   try {
-    const patient = await Patient.findById(id).lean();
+    const patient = await Patient.model.findById(id).lean();
     if (!patient) {
       return null;
     }
@@ -19,7 +19,7 @@ const getPatientById = async (id) => {
 
 const getPatientDashboard = async (req, res) => {
   const patient = await getPatientById(req.params.id);
-  await PatientDay.findOneAndUpdate(
+  await PatientDay.model.findOneAndUpdate(
     { patient: patient._id, date: dateFunctions.getMelbourneDate() },
     {
       $setOnInsert: { date: dateFunctions.getMelbourneDate() },
@@ -27,10 +27,12 @@ const getPatientDashboard = async (req, res) => {
     { upsert: true, new: true, setDefaultsOnInsert: true }
   );
 
-  const patientDay = await PatientDay.findOne({
-    patient: patient._id,
-    date: dateFunctions.getMelbourneDate(),
-  }).lean();
+  const patientDay = await PatientDay.model
+    .findOne({
+      patient: patient._id,
+      date: dateFunctions.getMelbourneDate(),
+    })
+    .lean();
   if (patient) {
     return res.render("patient/patient-dashboard", {
       title: "Dashboard",
@@ -49,7 +51,7 @@ const getPatientLogin = (req, res) => {
 };
 
 const postPatientLogin = async (req, res) => {
-  const patient = await Patient.findOne({ email: req.body.email }).lean();
+  const patient = await Patient.model.findOne({ email: req.body.email }).lean();
   if (patient && patient.password && patient.password == req.body.password) {
     return res.redirect(`/patient/${patient._id}/dashboard`);
   }
