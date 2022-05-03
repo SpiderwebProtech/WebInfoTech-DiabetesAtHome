@@ -46,8 +46,7 @@ const combinePatientAndDays = (patients, patientDays) => {
 };
 
 const getClinicianDashboard = async (req, res) => {
-  console.log("CONTROLLER");
-  const clinician = await getClinicianById(req.session.passport.user._id);
+  const clinician = await getClinicianById(req.session.passport.user.id);
   if (clinician) {
     const patients = await getAllPatientsForClincianId(clinician._id);
     const patientDays = await getAllPatientDaysForPatients(
@@ -67,7 +66,7 @@ const getClinicanPatientDashboard = async (req, res) => {
   const patientHistory = await patientDayController.getPatientHistoryById(
     req.params.patientID
   );
-  const clinician = await getClinicianById(req.params.clinicianID);
+  const clinician = await getClinicianById(req.session.passport.user.id);
   const patient = await patientController.getPatientById(req.params.patientID);
   return res.render("clinician/clinician-patient-view", {
     title: "Patient View",
@@ -77,26 +76,8 @@ const getClinicanPatientDashboard = async (req, res) => {
   });
 };
 
-const getClinicianLogin = (req, res) => {
-  res.render("clinician/clinician-login", {
-    title: "Login",
-  });
-};
-
-const postClinicianLogin = async (req, res) => {
-  const clinician = await Clinician.findOne({ email: req.body.email }).lean();
-  if (
-    clinician &&
-    clinician.password &&
-    clinician.password == req.body.password
-  ) {
-    return res.redirect(`/clinician/${clinician._id}/dashboard`);
-  }
-  return res.redirect("back");
-};
-
 const getClinicanPatientThresholds = async (req, res) => {
-  const clinician = await getClinicianById(req.params.clinicianID);
+  const clinician = await getClinicianById(req.session.passport.user.id);
   const patient = await patientController.getPatientById(req.params.patientID);
   return res.render("clinician/clinician-patient-thresholds", {
     patient: patient,
@@ -125,8 +106,6 @@ const postClinicanPatientThresholds = async (req, res) => {
 };
 
 module.exports = {
-  getClinicianLogin,
-  postClinicianLogin,
   getClinicianDashboard,
   getClinicanPatientDashboard,
   getClinicanPatientThresholds,

@@ -18,7 +18,7 @@ const getPatientById = async (id) => {
 };
 
 const getPatientDashboard = async (req, res) => {
-  const patient = await getPatientById(req.params.id);
+  const patient = await getPatientById(req.session.passport.user.id);
   await PatientDay.findOneAndUpdate(
     { patient: patient._id, date: dateFunctions.getMelbourneDate() },
     {
@@ -42,29 +42,16 @@ const getPatientDashboard = async (req, res) => {
   return res.sendStatus(404);
 };
 
-const getPatientLogin = (req, res) => {
-  res.render("patient/patient-login", {
-    title: "Login",
-  });
-};
-
-const postPatientLogin = async (req, res) => {
-  const patient = await Patient.findOne({ email: req.body.email }).lean();
-  if (patient && patient.password && patient.password == req.body.password) {
-    return res.redirect(`/patient/${patient._id}/dashboard`);
-  }
-  res.redirect("back");
-};
-
 const postPatientDay = async (req, res) => {
-  patientDayController.validateAndInsert(req.params.id, req.body);
+  patientDayController.validateAndInsert(
+    req.session.passport.user.id,
+    req.body
+  );
   return res.redirect("back");
 };
 
 module.exports = {
   getPatientDashboard,
-  getPatientLogin,
-  postPatientLogin,
   postPatientDay,
   getPatientById,
 };

@@ -50,10 +50,11 @@ router.post(
     successRedirect: `/clinician/dashboard`,
     failureRedirect: "/clinician/login",
     failureFlash: true,
-  })
+  }),
+  (req, res) => {}
 );
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
