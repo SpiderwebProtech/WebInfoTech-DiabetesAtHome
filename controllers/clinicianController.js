@@ -46,7 +46,8 @@ const combinePatientAndDays = (patients, patientDays) => {
 };
 
 const getClinicianDashboard = async (req, res) => {
-  const clinician = await getClinicianById(req.params.id);
+  console.log("CONTROLLER");
+  const clinician = await getClinicianById(req.session.passport.user._id);
   if (clinician) {
     const patients = await getAllPatientsForClincianId(clinician._id);
     const patientDays = await getAllPatientDaysForPatients(
