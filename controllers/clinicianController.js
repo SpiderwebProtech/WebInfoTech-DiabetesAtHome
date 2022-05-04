@@ -62,6 +62,34 @@ const getClinicianDashboard = async (req, res) => {
   return res.sendStatus(404);
 };
 
+const getClinicianAddPatient = async (req, res) => {
+  const clinician = await getClinicianById(req.session.passport.user.id);
+  return res.render("clinician/clinician-add-patient", {
+    title: "Add Patient",
+    clinician: clinician,
+  });
+};
+
+const postClinicianAddPatient = async (req, res) => {
+  console.log("POST");
+  const clinician = await getClinicianById(req.session.passport.user.id);
+  try {
+    const patient = await Patient.create({
+      email: req.body.email,
+      password: req.body.password,
+      name: req.body.name,
+      clinician: clinician._id,
+      bloodGlucoseRequired: true,
+      weightRequired: true,
+      insulinDosesRequired: true,
+      exerciseRequired: true,
+    });
+    return res.redirect(`/clinician/${patient._id}/thresholds`);
+  } catch {
+    return res.redirect("back");
+  }
+};
+
 const getClinicanPatientDashboard = async (req, res) => {
   const patientHistory = await patientDayController.getPatientHistoryById(
     req.params.patientID
@@ -107,6 +135,8 @@ const postClinicanPatientThresholds = async (req, res) => {
 
 module.exports = {
   getClinicianDashboard,
+  getClinicianAddPatient,
+  postClinicianAddPatient,
   getClinicanPatientDashboard,
   getClinicanPatientThresholds,
   postClinicanPatientThresholds,

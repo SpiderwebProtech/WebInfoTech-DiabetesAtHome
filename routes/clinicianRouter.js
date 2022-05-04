@@ -9,6 +9,13 @@ const clinicianController = require("../controllers/clinicianController");
 
 clinicianRouter.get("/dashboard", clinicianController.getClinicianDashboard);
 
+clinicianRouter.get("/add-patient", clinicianController.getClinicianAddPatient);
+
+clinicianRouter.post(
+  "/add-patient",
+  clinicianController.postClinicianAddPatient
+);
+
 clinicianRouter.get(
   "/:patientID/thresholds",
   clinicianController.getClinicanPatientThresholds
