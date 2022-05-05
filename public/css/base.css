@@ -59,6 +59,10 @@ h3 {
   font-size: 1.2rem;
 }
 
+.small-text {
+  font-size: 0.8rem;
+}
+
 .text-danger {
   color: red;
 }
@@ -153,6 +157,7 @@ input[type="number"] {
 }
 
 p {
+  word-break: normal;
   text-align: center;
 }
 
@@ -205,6 +210,14 @@ p {
   flex-direction: column;
 }
 
+.flex-fit {
+  width: auto;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
 .align-center {
   align-items: center;
 }
@@ -212,6 +225,15 @@ p {
 .align-start {
   align-items: start;
 }
+
+.support-message-field {
+  word-wrap: break-word;
+  word-break: break-word;
+  width: 400px;
+  height: 100px;
+}
+
+
 
 .founder-box {
   width: 250px;
