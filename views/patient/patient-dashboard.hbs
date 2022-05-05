@@ -6,144 +6,164 @@
     <a class="nav-button" href="/">Home</a>
   </nav>
   <main>
-    <h3 class="text-center">Welcome {{patient.name}}</h3>
+    <h2 class="text-center">Welcome {{patient.name}}</h2>
     <div class="flex flex-space-around">
-      <div class="shadow-box">
-        <form
-          class="styled-form"
-          name="dayform"
-          id="dayform"
-          action="postday"
-          method="post"
-        >
-          {{#if patient.bloodGlucoseRequired}}
-            <div class="flex flex-space-around flex-wrap form-line">
-              <div class="flex flex-column form-line-field">
-                <label for="bloodGlucose">Blood Glucose (nmol/L):</label>
-                  <input
-                    type="number"
-                    id="bloodGlucose"
-                    name="bloodGlucose"
-                    step="0.01"
-                    {{#if patientDay.bloodGlucose}}
-                    value={{patientDay.bloodGlucose}}
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
+      <div class="flex flex-column">
+        <div class="shadow-box">
+          <h3 class="text-center">Today's Health Data</h3>
+          <form
+            class="styled-form"
+            name="dayform"
+            id="dayform"
+            action="postday"
+            method="post"
+          >
+            {{#if patient.bloodGlucoseRequired}}
+              <div class="flex flex-space-around flex-wrap form-line">
+                <div class="flex flex-column form-line-field">
+                  <label for="bloodGlucose">Blood Glucose (nmol/L):</label>
+                    <input
+                      type="number"
+                      id="bloodGlucose"
+                      name="bloodGlucose"
+                      step="0.01"
+                      {{#if patientDay.bloodGlucose}}
+                      value={{patientDay.bloodGlucose}}
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
+                </div>
+                <div class="flex flex-column form-line-field">
+                  <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
+                    <input
+                      type="text"
+                      id="bloodGlucoseComment"
+                      name="bloodGlucoseComment"
+                      {{#if patientDay.bloodGlucoseComment}}
+                      value="{{patientDay.bloodGlucoseComment}}"
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
+                </div>
               </div>
-              <div class="flex flex-column form-line-field">
-                <label for="bloodGlucoseComment">Blood Glucose Comment:</label>
-                  <input
-                    type="text"
-                    id="bloodGlucoseComment"
-                    name="bloodGlucoseComment"
-                    {{#if patientDay.bloodGlucoseComment}}
-                    value="{{patientDay.bloodGlucoseComment}}"
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
-              </div>
-            </div>
-          {{/if}}
+            {{/if}}
 
-          {{#if patient.insulinDosesRequired}}
-            <div class="flex flex-space-around flex-wrap form-line">
-              <div class="flex flex-column form-line-field">
+            {{#if patient.insulinDosesRequired}}
+              <div class="flex flex-space-around flex-wrap form-line">
+                <div class="flex flex-column form-line-field">
 
-                <label for="insulinDoses">Insulin doses:</label>
-                  <input
-                    type="number"
-                    id="insulinDoses"
-                    name="insulinDoses"
-                    {{#if patientDay.insulinDoses}}
-                    value={{patientDay.insulinDoses}}
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
+                  <label for="insulinDoses">Insulin doses:</label>
+                    <input
+                      type="number"
+                      id="insulinDoses"
+                      name="insulinDoses"
+                      {{#if patientDay.insulinDoses}}
+                      value={{patientDay.insulinDoses}}
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
+                </div>
+                <div class="flex flex-column form-line-field">
+                  <label for="insulinDosesComment">Insulin Doses Comment:</label>
+                    <input
+                      type="text"
+                      id="insulinDosesComment"
+                      name="insulinDosesComment"
+                      {{#if patientDay.insulinDosesComment}}
+                      value="{{patientDay.insulinDosesComment}}"
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
+                </div>
               </div>
-              <div class="flex flex-column form-line-field">
-                <label for="insulinDosesComment">Insulin Doses Comment:</label>
-                  <input
-                    type="text"
-                    id="insulinDosesComment"
-                    name="insulinDosesComment"
-                    {{#if patientDay.insulinDosesComment}}
-                    value="{{patientDay.insulinDosesComment}}"
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
-              </div>
-            </div>
-          {{/if}}
+            {{/if}}
 
-          {{#if patient.weightRequired}}
-            <div class="flex flex-space-around flex-wrap form-line">
-              <div class="flex flex-column form-line-field">
-                <label for="weight">Weight (kg):</label>
-                  <input
-                    type="number"
-                    id="weight"
-                    name="weight"
-                    step="0.01"
-                    {{#if patientDay.weight}}
-                    value={{patientDay.weight}}
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
+            {{#if patient.weightRequired}}
+              <div class="flex flex-space-around flex-wrap form-line">
+                <div class="flex flex-column form-line-field">
+                  <label for="weight">Weight (kg):</label>
+                    <input
+                      type="number"
+                      id="weight"
+                      name="weight"
+                      step="0.01"
+                      {{#if patientDay.weight}}
+                      value={{patientDay.weight}}
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
+                </div>
+                <div class="flex flex-column form-line-field">
+                  <label for="weightComment">Weight Comment:</label>
+                    <input
+                      type="text"
+                      id="weightComment"
+                      name="weightComment"
+                      {{#if patientDay.weightComment}}
+                      value="{{patientDay.weightComment}}"
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
               </div>
-              <div class="flex flex-column form-line-field">
-                <label for="weightComment">Weight Comment:</label>
-                  <input
-                    type="text"
-                    id="weightComment"
-                    name="weightComment"
-                    {{#if patientDay.weightComment}}
-                    value="{{patientDay.weightComment}}"
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
-            </div>
-            </div>
-          {{/if}}
+              </div>
+            {{/if}}
 
-          {{#if patient.exerciseRequired}}
-            <div class="flex flex-space-around flex-wrap form-line">
-              <div class="flex flex-column form-line-field">
-                <label for="exercise">Exercise (steps):</label>
-                  <input
-                    type="number"
-                    id="exercise"
-                    name="exercise"
-                    {{#if patientDay.exercise}}
-                    value={{patientDay.exercise}}
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
+            {{#if patient.exerciseRequired}}
+              <div class="flex flex-space-around flex-wrap form-line">
+                <div class="flex flex-column form-line-field">
+                  <label for="exercise">Exercise (steps):</label>
+                    <input
+                      type="number"
+                      id="exercise"
+                      name="exercise"
+                      {{#if patientDay.exercise}}
+                      value={{patientDay.exercise}}
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
+                </div>
+                <div class="flex flex-column form-line-field">
+                  <label for="exerciseComment">Exercise Comment:</label>
+                    <input
+                      type="text"
+                      id="exerciseComment"
+                      name="exerciseComment"
+                      {{#if patientDay.exerciseComment}}
+                      value="{{patientDay.exerciseComment}}"
+                      disabled="disabled"
+                      readonly
+                      {{/if}}
+                    />
+                </div>
               </div>
-              <div class="flex flex-column form-line-field">
-                <label for="exerciseComment">Exercise Comment:</label>
-                  <input
-                    type="text"
-                    id="exerciseComment"
-                    name="exerciseComment"
-                    {{#if patientDay.exerciseComment}}
-                    value="{{patientDay.exerciseComment}}"
-                    disabled="disabled"
-                    readonly
-                    {{/if}}
-                  />
-              </div>
-            </div>
-          {{/if}}
-          <button type="submit">Submit</button>
-        </form>
+            {{/if}}
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div class="shadow-box flex-fit">
+          <h3 class="text-center">Clinician Support Message</h3>
+          <div class="flex flex-column flex-wrap form-line">
+            <p class="flex flex-wrap">
+              {{#if patient.clinicianNote}}
+                {{patient.clinicianNote}}
+              {{else}}
+                No clinician note available :(
+              {{/if}}
+            </p>
+            {{#if patient.clinicianNoteTime}}
+              <p class="small-text flex flex-end">
+                {{patient.clinicianNoteTime}}
+              </p>
+            {{/if}}
+          </div>
+        </div>
       </div>
     </div>
 

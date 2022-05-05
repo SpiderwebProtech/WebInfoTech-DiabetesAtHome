@@ -3,6 +3,7 @@ const patientDayController = require("../controllers/patientDayController");
 
 const Clinician = require("../models/clinicianModel");
 const Patient = require("../models/patientModel");
+const dateFunctions = require("../public/javascript/dateFunctions")
 
 const getAllPatientsForClincianId = async (id) => {
   try {
@@ -133,6 +134,20 @@ const postClinicanPatientThresholds = async (req, res) => {
   return res.redirect("back");
 };
 
+const getClinicianPatientMessage = async (req, res) => {
+  const clinician = await getClinicianById(req.session.passport.user.id);
+  const patient = await patientController.getPatientById(req.params.patientID);
+  return res.render("clinician/clinician-patient-message", {
+    patient: patient,
+    clinician: clinician,
+  });
+};
+
+const postClinicianPatientMessage = async (req, res) => {
+  await Patient.findByIdAndUpdate(req.params.patientID, {clinicianNote: req.body.clinicianNote, clinicianNoteTime: dateFunctions.getMelbourneTime()})
+  return res.redirect("back")
+};
+
 module.exports = {
   getClinicianDashboard,
   getClinicianAddPatient,
@@ -140,4 +155,6 @@ module.exports = {
   getClinicanPatientDashboard,
   getClinicanPatientThresholds,
   postClinicanPatientThresholds,
+  getClinicianPatientMessage,
+  postClinicianPatientMessage,
 };

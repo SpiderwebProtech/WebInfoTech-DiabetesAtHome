@@ -30,4 +30,14 @@ clinicianRouter.get(
   clinicianController.getClinicanPatientDashboard
 );
 
+clinicianRouter.get(
+  "/:patientID/support-message",
+  clinicianController.getClinicianPatientMessage
+);
+
+clinicianRouter.post(
+  "/:patientID/support-message",
+  clinicianController.postClinicianPatientMessage
+);
+
 module.exports = clinicianRouter;
