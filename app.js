@@ -4,6 +4,7 @@ const flash = require("express-flash");
 const session = require("express-session");
 const passport = require("./passport");
 const authRouter = require("./routes/auth");
+const splashRouter = require("./routes/splashRouter");
 
 require("./models");
 
@@ -55,10 +56,6 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
-app.get("/", (req, res) => {
-  res.render("index.hbs");
-});
-
 app.use((req, res, next) => {
   console.log("message arrived: " + req.method + " " + req.path);
   next();
@@ -69,6 +66,7 @@ if (app.get("env") === "production") {
 }
 
 app.use(passport.authenticate("session"));
+app.use(splashRouter);
 app.use(authRouter);
 
 app.listen(process.env.PORT || 3000, () => {
