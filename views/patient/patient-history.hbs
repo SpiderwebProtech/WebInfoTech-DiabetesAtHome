@@ -1,0 +1,76 @@
+<body>
+  <header>
+    <h1>Diabetes@Home</h1>
+  </header>
+  <nav>
+    <a class="nav-button" href="/">Logout</a>
+    <a
+      class="nav-button"
+      href="/patient/dashboard"
+    >Dashboard</a>
+  </nav>
+  <main>
+    <h3 class="text-center">History for {{patient.name}}</h3>
+    <div class="flex flex-space-around flex-wrap">
+      <div class="vh60-scroll">
+      <table class="clinician-styled-table">
+        <thead>
+          <tr>
+            <th width="20%">Date</th>
+            <th width="20%">Blood Glucose</th>
+            <th width="20%">Insulin Doses</th>
+            <th width="20%">Weight (kg)</th>
+            <th width="20%">Exercise (steps)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each patientHistory}}
+            <tr>
+              <td width="20%">{{this.date}}</td>
+              <td width="20%">
+                {{#if (outRange ../patient.bloodGlucoseLow ../patient.bloodGlucoseHigh this.bloodGlucose)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.bloodGlucose}}
+                  </span>
+              </td>
+              <td width="20%">
+                {{#if (outRange ../patient.insulinDosesLow ../patient.insulinDosesHigh this.insulinDoses)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.insulinDoses}}
+                  </span>
+              </td>
+              <td width="20%">
+                {{#if (outRange ../patient.weightLow ../patient.weightHigh this.weight)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.weight}}
+                  </span>
+              </td>
+              <td width="20%">
+                {{#if (outRange ../patient.exerciseLow ../patient.exerciseHigh this.exercise)}}
+                  <span class="text-danger">
+                {{else}}
+                  <span>
+                {{/if}} 
+                  {{this.exercise}}
+                  </span>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <h3>This website has been designed by SpiderWebProTech</h3>
+  </footer>
+</body>

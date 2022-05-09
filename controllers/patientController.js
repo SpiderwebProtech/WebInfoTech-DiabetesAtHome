@@ -58,9 +58,33 @@ const getPatientUpdatePassword = async (req, res) => {
   });
 };
 
+const postPatientUpdatePassword = async (req, res) => {
+  if (req.body.password != req.body.passwordConfirm) {
+    return res.redirect("back");
+  }
+  Patient.findByIdAndUpdate(req.session.passport.user.id, {
+    password: req.body.password,
+  });
+  return res.redirect("dashboard");
+};
+
+const getPatientHistory = async (req, res) => {
+  const patient = await getPatientById(req.session.passport.user.id);
+  const patientHistory = await patientDayController.getPatientHistoryById(
+    req.session.passport.user.id
+  );
+  return res.render("patient/patient-history", {
+    title: "History",
+    patient: patient,
+    patientHistory: patientHistory,
+  });
+};
+
 module.exports = {
   getPatientDashboard,
   postPatientDay,
   getPatientById,
   getPatientUpdatePassword,
+  postPatientUpdatePassword,
+  getPatientHistory,
 };
