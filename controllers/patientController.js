@@ -50,8 +50,17 @@ const postPatientDay = async (req, res) => {
   return res.redirect("back");
 };
 
+const getPatientUpdatePassword = async (req, res) => {
+  const patient = await getPatientById(req.session.passport.user.id);
+  return res.render("patient/patient-update-password", {
+    title: "Update Password",
+    patient: patient,
+  });
+};
+
 module.exports = {
   getPatientDashboard,
   postPatientDay,
   getPatientById,
+  getPatientUpdatePassword,
 };
