@@ -62,9 +62,9 @@ const postPatientUpdatePassword = async (req, res) => {
   if (req.body.password != req.body.passwordConfirm) {
     return res.redirect("back");
   }
-  Patient.findByIdAndUpdate(req.session.passport.user.id, {
-    password: req.body.password,
-  });
+  const patient = await Patient.findById(req.session.passport.user.id);
+  patient.password = req.body.password;
+  await patient.save();
   return res.redirect("dashboard");
 };
 

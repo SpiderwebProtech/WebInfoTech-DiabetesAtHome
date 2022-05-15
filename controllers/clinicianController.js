@@ -3,7 +3,7 @@ const patientDayController = require("../controllers/patientDayController");
 
 const Clinician = require("../models/clinicianModel");
 const Patient = require("../models/patientModel");
-const dateFunctions = require("../public/javascript/dateFunctions")
+const dateFunctions = require("../public/javascript/dateFunctions");
 
 const getAllPatientsForClincianId = async (id) => {
   try {
@@ -74,11 +74,12 @@ const getClinicianAddPatient = async (req, res) => {
 const postClinicianAddPatient = async (req, res) => {
   console.log("POST");
   const clinician = await getClinicianById(req.session.passport.user.id);
+  console.log(req.body.email);
   try {
     const patient = await Patient.create({
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      name: req.body.name,
       clinician: clinician._id,
       bloodGlucoseRequired: true,
       weightRequired: true,
@@ -86,7 +87,8 @@ const postClinicianAddPatient = async (req, res) => {
       exerciseRequired: true,
     });
     return res.redirect(`/clinician/${patient._id}/thresholds`);
-  } catch {
+  } catch (error) {
+    console.log(error);
     return res.redirect("back");
   }
 };
@@ -144,8 +146,11 @@ const getClinicianPatientMessage = async (req, res) => {
 };
 
 const postClinicianPatientMessage = async (req, res) => {
-  await Patient.findByIdAndUpdate(req.params.patientID, {clinicianNote: req.body.clinicianNote, clinicianNoteTime: dateFunctions.getMelbourneTime()})
-  return res.redirect("back")
+  await Patient.findByIdAndUpdate(req.params.patientID, {
+    clinicianNote: req.body.clinicianNote,
+    clinicianNoteTime: dateFunctions.getMelbourneTime(),
+  });
+  return res.redirect("back");
 };
 
 module.exports = {
