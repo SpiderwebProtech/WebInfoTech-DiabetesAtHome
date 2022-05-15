@@ -69,13 +69,19 @@ const getClinicianAddPatient = async (req, res) => {
   return res.render("clinician/clinician-add-patient", {
     title: "Add Patient",
     clinician: clinician,
+    error: "",
   });
 };
 
 const postClinicianAddPatient = async (req, res) => {
-  console.log("POST");
   const clinician = await getClinicianById(req.session.passport.user.id);
-  console.log(req.body.email);
+  if (!req.body.name || !req.body.email || !req.body.password) {
+    return res.render("clinician/clinician-add-patient", {
+      title: "Add Patient",
+      clinician: clinician,
+      error: "Invalid Input",
+    });
+  }
   try {
     const patient = await Patient.create({
       name: req.body.name,
@@ -89,8 +95,11 @@ const postClinicianAddPatient = async (req, res) => {
     });
     return res.redirect(`/clinician/${patient._id}/thresholds`);
   } catch (error) {
-    console.log(error);
-    return res.redirect("back");
+    return res.render("clinician/clinician-add-patient", {
+      title: "Add Patient",
+      clinician: clinician,
+      error: "A User already exists for this email",
+    });
   }
 };
 
