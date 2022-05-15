@@ -28,7 +28,10 @@ const isClinicianAuthenticated = (req, res, next) => {
 };
 
 router.get("/patient/login", (req, res) => {
-  res.render("patient/patient-login", { flash: "error", title: "Login" });
+  res.render("patient/patient-login", {
+    flash: req.flash("error"),
+    title: "Login",
+  });
 });
 
 router.post(
@@ -41,7 +44,10 @@ router.post(
 );
 
 router.get("/clinician/login", (req, res) => {
-  res.render("clinician/clinician-login", { flash: "error", title: "Login" });
+  res.render("clinician/clinician-login", {
+    flash: req.flash("error"),
+    title: "Login",
+  });
 });
 
 router.post(
