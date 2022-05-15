@@ -4,9 +4,6 @@ const clinicianRouter = express.Router();
 
 const clinicianController = require("../controllers/clinicianController");
 
-// clinicianRouter.get("/", clinicianController.getClinicianLogin);
-// clinicianRouter.post("/login", clinicianController.postClinicianLogin);
-
 clinicianRouter.get("/dashboard", clinicianController.getClinicianDashboard);
 
 clinicianRouter.get("/add-patient", clinicianController.getClinicianAddPatient);
@@ -32,12 +29,22 @@ clinicianRouter.get(
 
 clinicianRouter.get(
   "/:patientID/support-message",
-  clinicianController.getClinicianPatientMessage
+  clinicianController.getClinicianPatientSupportMessage
 );
 
 clinicianRouter.post(
   "/:patientID/support-message",
-  clinicianController.postClinicianPatientMessage
+  clinicianController.postClinicianPatientSupportMessage
+);
+
+clinicianRouter.get(
+  "/:patientID/clinician-notes",
+  clinicianController.getClinicianNotes
+);
+
+clinicianRouter.post(
+  "/:patientId/clinician-notes",
+  clinicianController.postClinicianNotes
 );
 
 module.exports = clinicianRouter;

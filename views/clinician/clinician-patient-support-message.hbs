@@ -1,0 +1,47 @@
+<body>
+  <header>
+    <h1>Diabetes@Home</h1>
+  </header>
+  <nav>
+    <a class="nav-button" href="/">Logout</a>
+    <a
+      class="nav-button"
+      href="/clinician/dashboard"
+    >Dashboard</a>
+    <a
+      class="nav-button"
+      href="/clinician/{{patient._id}}"
+    >{{patient.name}}</a>
+  </nav>
+  <main>
+    <div class="flex flex-space-around">
+      <div class="shadow-box flex-fit">
+        <h3 class="text-center">Clinician Support Message</h3>
+        <form
+        class="styled-form"
+        name="supportmessageform"
+        id="supportmessageform"
+        method="post"
+        >
+          <div class="flex flex-column flex-wrap form-line">
+              <input 
+              class="support-message-field"
+              type="text" 
+              name="supportMessage" 
+              id="supportMessage" 
+              value="{{patient.supportMessage}}">
+              {{#if patient.supportMessageTime}}
+                  <p class="small-text flex flex-end">
+                      {{patient.supportMessageTime}}
+                  </p>
+              {{/if}}
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <h3>This website has been designed by SpiderWebProTech</h3>
+  </footer>
+</body>

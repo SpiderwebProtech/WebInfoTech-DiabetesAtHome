@@ -153,15 +153,15 @@
           <h3 class="text-center">Clinician Support Message</h3>
           <div class="flex flex-column flex-wrap form-line">
             <p class="flex flex-wrap">
-              {{#if patient.clinicianNote}}
-                {{patient.clinicianNote}}
+              {{#if patient.supportMessage}}
+                {{patient.supportMessage}}
               {{else}}
-                No clinician note available :(
+                No support message available :(
               {{/if}}
             </p>
-            {{#if patient.clinicianNoteTime}}
+            {{#if patient.supportMessageTime}}
               <p class="small-text flex flex-end">
-                {{patient.clinicianNoteTime}}
+                {{patient.supportMessageTime}}
               </p>
             {{/if}}
           </div>

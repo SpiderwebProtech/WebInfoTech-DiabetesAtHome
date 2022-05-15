@@ -1,5 +1,6 @@
 const patientController = require("../controllers/patientController");
 const patientDayController = require("../controllers/patientDayController");
+const notesController = require("../controllers/notesController");
 
 const Clinician = require("../models/clinicianModel");
 const Patient = require("../models/patientModel");
@@ -136,20 +137,41 @@ const postClinicanPatientThresholds = async (req, res) => {
   return res.redirect("back");
 };
 
-const getClinicianPatientMessage = async (req, res) => {
+const getClinicianPatientSupportMessage = async (req, res) => {
   const clinician = await getClinicianById(req.session.passport.user.id);
   const patient = await patientController.getPatientById(req.params.patientID);
-  return res.render("clinician/clinician-patient-message", {
+  return res.render("clinician/clinician-patient-support-message", {
     patient: patient,
     clinician: clinician,
   });
 };
 
-const postClinicianPatientMessage = async (req, res) => {
+const postClinicianPatientSupportMessage = async (req, res) => {
   await Patient.findByIdAndUpdate(req.params.patientID, {
-    clinicianNote: req.body.clinicianNote,
-    clinicianNoteTime: dateFunctions.getMelbourneTime(),
+    supportMessage: req.body.supportMessage,
+    supportMessageTime: dateFunctions.getMelbourneTime(),
   });
+  return res.redirect("back");
+};
+
+const getClinicianNotes = async (req, res) => {
+  const clinician = await getClinicianById(req.session.passport.user.id);
+  const patient = await patientController.getPatientById(req.params.patientID);
+  const notes = await notesController.getNotesForPatientId(
+    req.params.patientId
+  );
+  return res.render("clinician/clinician-notes", {
+    patient: patient,
+    clinician: clinician,
+    notes: notes,
+  });
+};
+
+const postClinicianNotes = async (req, res) => {
+  await notesController.addNoteForPatient(
+    req.params.patientID,
+    req.body.clinicianNote
+  );
   return res.redirect("back");
 };
 
@@ -160,6 +182,8 @@ module.exports = {
   getClinicanPatientDashboard,
   getClinicanPatientThresholds,
   postClinicanPatientThresholds,
-  getClinicianPatientMessage,
-  postClinicianPatientMessage,
+  getClinicianPatientSupportMessage,
+  postClinicianPatientSupportMessage,
+  getClinicianNotes,
+  postClinicianNotes,
 };

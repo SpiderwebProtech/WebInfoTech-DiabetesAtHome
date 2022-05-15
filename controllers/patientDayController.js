@@ -1,7 +1,6 @@
 const dateFunctions = require("../public/javascript/dateFunctions");
 
 const PatientDay = require("../models/patientDayModel");
-const Patient = require("../models/patientModel");
 
 const getPatientDayByPatientIdToday = async (id) => {
   const today = dateFunctions.getMelbourneDate();
