@@ -89,6 +89,23 @@ const getPatientHistory = async (req, res) => {
   });
 };
 
+const getLeaderboard = async () => {
+  await patientDayController.updateAllEngagement();
+  const leaderboard = Patient.find().sort({"engagement": -1}).limit(5);
+  return leaderboard;
+}
+
+
+const getPatientLeaderboard = async (req, res) => {
+  const patient = await getPatientById(req.session.passport.user.id);
+  const leaderboard = await getLeaderboard()
+  return res.render("patient/patient-leaderboard", {
+    title: "Leaderboard",
+    patient: patient,
+    leaderboard: leaderboard,
+  });
+}
+
 module.exports = {
   getAllPatientIDs,
   getPatientById,
@@ -98,4 +115,5 @@ module.exports = {
   getPatientUpdatePassword,
   postPatientUpdatePassword,
   getPatientHistory,
+  getPatientLeaderboard,
 };

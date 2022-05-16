@@ -167,7 +167,7 @@ const updateEngagementForIds = async (ids) => {
 };
 
 const updateAllEngagement = () => {
-  const allPatientIDs = patientController.getAllPatientIDs();
+  const allPatientIDs = patientController.getAllPatientIds();
   updateEngagementforIds(allPatientIDs);
 };
 

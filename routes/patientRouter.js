@@ -18,4 +18,10 @@ patientRouter.post(
   patientController.postPatientUpdatePassword
 );
 
+patientRouter.get(
+  "/leaderboard", 
+  patientController.getPatientLeaderboard
+);
+
+
 module.exports = patientRouter;

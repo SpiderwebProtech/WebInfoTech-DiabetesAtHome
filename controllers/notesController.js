@@ -15,11 +15,13 @@ const getNotesForPatientId = async (id) => {
 };
 
 const addNoteForPatient = async (id, note) => {
-  await Notes.create({
-    patient: id,
-    note: note,
-    time: dateFunctions.getMelbourneTime(),
-  });
+  if (note !== "") {
+    await Notes.create({
+      patient: id,
+      note: note,
+      time: dateFunctions.getMelbourneTime(),
+    });
+  }
 };
 
 module.exports = {
