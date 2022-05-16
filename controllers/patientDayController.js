@@ -1,6 +1,7 @@
 const dateFunctions = require("../public/javascript/dateFunctions");
 
 const PatientDay = require("../models/patientDayModel");
+const Patient = require("../models/patientModel");
 
 const getPatientDayByPatientIdToday = async (id) => {
   const today = dateFunctions.getMelbourneDate();
@@ -38,6 +39,7 @@ const getPatientDayByPatientIdTodayDropId = async (id) => {
 };
 
 const getPatientHistoryById = async (id) => {
+  await updateEngagementForId(id);
   try {
     const patientHistory = await PatientDay.find({ patient: id })
       .sort({ date: -1 })
@@ -45,19 +47,57 @@ const getPatientHistoryById = async (id) => {
     if (!patientHistory) {
       return null;
     }
-    // const filledPatientHistory = fillEmptyPatientDays(patientHistory)
+
     return patientHistory;
   } catch (err) {
     return null;
   }
 };
 
-const fillEmptyPatientDays = (patientHistory) => {
+const fillEmptyPatientDaysForId = async (id) => {
+  const patientHistory = await PatientDay.find({ patient: id })
+    .sort({ date: -1 })
+    .lean();
   const today = dateFunctions.getMelbourneDate();
   const firstDay = patientHistory.slice(-1)[0].date;
   const dateArray = dateFunctions.getDates(new Date(firstDay), new Date(today));
+  if (patientHistory.length == dateArray.length) {
+    return;
+  }
+  dateArray.forEach(async (date) => {
+    await PatientDay.updateOne(
+      { patient: id, date: date },
+      { $setOnInsert: { patient: id, date: date } },
+      { upsert: true }
+    );
+  });
+};
 
-  return patientHistory;
+const fillEmptyPatientDaysForIds = async (ids) => {
+  ids.forEach((id) => fillEmptyPatientDays(id));
+};
+
+const updateEngagementForId = async (id) => {
+  fillEmptyPatientDaysForId(id);
+
+  const validHistory = await (
+    await PatientDay.find({ patient: id })
+  ).map((patientDay) => patientDay.valid);
+  const total = validHistory.length;
+  const valid = validHistory.filter((x) => x == true).length;
+  await Patient.updateOne(
+    { _id: id },
+    { $set: { engagement: (valid / total) * 100 } }
+  );
+};
+
+const updateEngagementForIds = async (ids) => {
+  ids.forEach((id) => updateEngagementForId(id));
+};
+
+const updateAllEngagement = () => {
+  const allPatientIDs = patientController.getAllPatientIDs();
+  updateEngagementforIds(allPatientIDs);
 };
 
 const validateAndInsert = async (id, body) => {
@@ -199,4 +239,9 @@ module.exports = {
   getPatientDayByPatientIdTodayDropId,
   getPatientHistoryById,
   validateAndInsert,
+  fillEmptyPatientDaysForId,
+  fillEmptyPatientDaysForIds,
+  updateEngagementForId,
+  updateEngagementForIds,
+  updateAllEngagement,
 };

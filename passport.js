@@ -25,7 +25,7 @@ passport.deserializeUser((obj, done) => {
 passport.use(
   "patient-local",
   new LocalStrategy({ usernameField: "email" }, (username, password, done) => {
-    Patient.findOne({ username }, {}, {}, (err, user) => {
+    Patient.findOne({ email: username }, {}, {}, (err, user) => {
       if (err) {
         return done(undefined, false, {
           message: "Unknown error has occurred",
@@ -56,7 +56,7 @@ passport.use(
 passport.use(
   "clinician-local",
   new LocalStrategy({ usernameField: "email" }, (username, password, done) => {
-    Clinician.findOne({ username }, {}, {}, (err, user) => {
+    Clinician.findOne({ email: username }, {}, {}, (err, user) => {
       if (err) {
         return done(undefined, false, {
           message: "Unknown error has occurred",
