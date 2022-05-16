@@ -106,35 +106,12 @@
           </tr>
         </thead>
         <tbody>
-          {{#each patientHistory}}
-            {{#if this.bloodGlucoseComment}}
-              <tr>
-                <td width="20%">{{this.date}}</td>
-                <td width="60%">{{this.bloodGlucoseComment}}</td>
-                <td width="20%">Blood Glucose</td>
-              </tr>
-            {{/if}}
-            {{#if this.insulinDosesComment}}
-              <tr>
-                <td width="20%">{{this.date}}</td>
-                <td width="60%">{{this.insulinDosesComment}}</td>
-                <td width="20%">Insulin Doses</td>
-              </tr>
-            {{/if}}
-            {{#if this.weightComment}}
-              <tr>
-                <td width="20%">{{this.date}}</td>
-                <td width="60%">{{this.weightComment}}</td>
-                <td width="20%">Weight</td>
-              </tr>
-            {{/if}}
-            {{#if this.exerciseComment}}
-              <tr>
-                <td width="20%">{{this.date}}</td>
-                <td width="60%">{{this.exerciseComment}}</td>
-                <td width="20%">Exercise</td>
-              </tr>
-            {{/if}}
+          {{#each comments}}
+            <tr>
+              <td width="20%">{{this.time}}</td>
+              <td width="60%">{{this.comment}}</td>
+              <td width="20%">{{this.type}}</td>
+            </tr>
           {{/each}}
         </tbody>
       </table>

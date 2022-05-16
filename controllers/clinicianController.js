@@ -41,6 +41,13 @@ const getAllPatientDaysForPatients = async (patientIds) => {
   return patientDays;
 };
 
+const getAllPatientIDsForClinicianId = async (id) => {
+  const patientIds = await (
+    await Patient.find({ clinician: id })
+  ).map((patient) => patient._id);
+  return patientIds;
+};
+
 const combinePatientAndDays = (patients, patientDays) => {
   const combined = [];
   for (let i = 0; i < patients.length; i++) {
@@ -50,6 +57,10 @@ const combinePatientAndDays = (patients, patientDays) => {
 };
 
 const getClinicianDashboard = async (req, res) => {
+  const patientDayController = require("../controllers/patientDayController");
+  const comments = await patientDayController.getAllCommentsForClinicianId(
+    req.session.passport.user.id
+  );
   const clinician = await getClinicianById(req.session.passport.user.id);
   if (clinician) {
     const patients = await getAllPatientsForClincianId(clinician._id);
@@ -61,6 +72,7 @@ const getClinicianDashboard = async (req, res) => {
       title: "Dashboard",
       clinician: clinician,
       combined: combined,
+      comments: comments,
     });
   }
   return res.sendStatus(404);
@@ -118,6 +130,7 @@ const postClinicianAddPatient = async (req, res) => {
 };
 
 const getClinicanPatientDashboard = async (req, res) => {
+  const comments = await getAllCommentsForPatientId(req.params.patientID);
   patientDayController.updateEngagementForId(req.params.patientID);
   const patientHistory = await patientDayController.getPatientHistoryById(
     req.params.patientID
@@ -129,6 +142,7 @@ const getClinicanPatientDashboard = async (req, res) => {
     clinician: clinician,
     patientHistory: patientHistory,
     patient: patient,
+    comments: comments,
   });
 };
 
@@ -210,4 +224,5 @@ module.exports = {
   postClinicianPatientSupportMessage,
   getClinicianNotes,
   postClinicianNotes,
+  getAllPatientIDsForClinicianId,
 };

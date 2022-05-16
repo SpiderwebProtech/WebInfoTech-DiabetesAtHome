@@ -22,6 +22,10 @@ const toMelbourneTime = (time) => {
   return newTime;
 };
 
+const fromMelbourneTime = (time) => {
+  return new Date(time);
+};
+
 // Taken from https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates
 Date.prototype.addDays = function (days) {
   var date = new Date(this.valueOf());
@@ -44,4 +48,5 @@ module.exports = {
   getMelbourneDate,
   getMelbourneTime,
   getDates,
+  fromMelbourneTime,
 };

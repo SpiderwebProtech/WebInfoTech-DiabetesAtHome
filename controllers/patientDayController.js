@@ -1,5 +1,7 @@
 const dateFunctions = require("../public/javascript/dateFunctions");
 
+const patientController = require("../controllers/patientController");
+
 const PatientDay = require("../models/patientDayModel");
 const Patient = require("../models/patientModel");
 
@@ -36,6 +38,75 @@ const getPatientDayByPatientIdTodayDropId = async (id) => {
   } catch (err) {
     return null;
   }
+};
+
+getAllCommentsForPatientId = async (id) => {
+  const patient = await Patient.findById(id);
+  const history = await PatientDay.find({ patient: id });
+  const comments = [];
+  history.forEach((patientDay) => {
+    if (!!patientDay.bloodGlucoseComment)
+      comments.push({
+        patient: patient.name,
+        id: patient._id,
+        comment: patientDay.bloodGlucoseComment,
+        time: patientDay.bloodGlucoseCommentTime,
+        type: "Blood Glucose",
+      });
+    if (!!patientDay.insulinDosesComment)
+      comments.push({
+        patient: patient.name,
+        id: patient._id,
+        comment: patientDay.insulinDosesComment,
+        time: patientDay.insulinDosesCommentTime,
+        type: "Insulin Doses",
+      });
+    if (!!patientDay.exerciseComment)
+      comments.push({
+        patient: patient.name,
+        id: patient._id,
+        comment: patientDay.exerciseComment,
+        time: patientDay.exerciseCommentTime,
+        type: "Exercise",
+      });
+    if (!!patientDay.weightComment)
+      comments.push({
+        patient: patient.name,
+        id: patient._id,
+        comment: patientDay.weightComment,
+        time: patientDay.weightCommentTime,
+        type: "Weight",
+      });
+  });
+
+  comments.sort(
+    (a, b) =>
+      dateFunctions.fromMelbourneTime(b.time) -
+      dateFunctions.fromMelbourneTime(a.time)
+  );
+
+  return comments;
+};
+
+getAllCommentsForClinicianId = async (id) => {
+  const clinicianController = require("../controllers/clinicianController");
+  const patientIds = await clinicianController.getAllPatientIDsForClinicianId(
+    id
+  );
+  allComments = [];
+
+  patientIds.forEach(async (id) => {
+    const patientComments = await getAllCommentsForPatientId(id);
+    patientComments.forEach((comment) => allComments.push(comment));
+  });
+
+  allComments.sort(
+    (a, b) =>
+      dateFunctions.fromMelbourneTime(b.time) -
+      dateFunctions.fromMelbourneTime(a.time)
+  );
+
+  return allComments;
 };
 
 const getPatientHistoryById = async (id) => {
@@ -251,4 +322,6 @@ module.exports = {
   updateEngagementForId,
   updateEngagementForIds,
   updateAllEngagement,
+  getAllCommentsForPatientId,
+  getAllCommentsForClinicianId,
 };

@@ -91,6 +91,7 @@ const getPatientHistory = async (req, res) => {
 
 module.exports = {
   getAllPatientIDs,
+  getPatientById,
   getPatientDashboard,
   postPatientDay,
   getPatientById,
