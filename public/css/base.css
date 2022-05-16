@@ -246,6 +246,11 @@ p {
   overflow: auto;
 }
 
+.vh50-scroll {
+  max-height: 50vh;
+  overflow: auto;
+}
+
 .grey-cell {
   background-color: lightgrey;
 }

@@ -32,22 +32,24 @@
           </form>
         </div>
         <div>
-          <table class="clinician-styled-table" id="comments">
-            <thead>
-              <tr>
-                <th width="20%">Date</th>
-                <th width="80%">Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each notes}}
+          <div class="vh50-scroll">
+            <table class="clinician-styled-table" id="comments">
+              <thead>
                 <tr>
-                    <td width="20%">{{this.time}}</td>
-                    <td width="80%" style="max-width: 300px">{{this.note}}</td>
+                  <th width="20%">Date</th>
+                  <th width="80%">Note</th>
                 </tr>
-              {{/each}}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {{#each notes}}
+                  <tr>
+                      <td width="20%">{{this.time}}</td>
+                      <td width="80%" style="max-width: 300px">{{this.note}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
