@@ -1,3 +1,4 @@
+const { booleanParser } = require("config/parser");
 const mongoose = require("mongoose");
 
 const patientDaySchema = new mongoose.Schema({
@@ -5,7 +6,8 @@ const patientDaySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patient",
   },
-  date: { type: String },
+  date: { type: String, required: true },
+  valid: { type: Boolean, default: false },
   bloodGlucose: { type: Number, default: null },
   bloodGlucoseTime: { type: String, default: null },
   bloodGlucoseComment: { type: String, default: null },

@@ -5,6 +5,13 @@ const PatientDay = require("../models/patientDayModel");
 
 const patientDayController = require("../controllers/patientDayController");
 
+const getAllPatientIDs = async () => {
+  const IDs = await (
+    await Patient.find({}, { _id: 1 })
+  ).map((patient) => patient._id);
+  return IDs;
+};
+
 const getPatientById = async (id) => {
   try {
     const patient = await Patient.findById(id).lean();
@@ -18,6 +25,7 @@ const getPatientById = async (id) => {
 };
 
 const getPatientDashboard = async (req, res) => {
+  patientDayController.updateEngagementForId(req.session.passport.user.id);
   const patient = await getPatientById(req.session.passport.user.id);
   await PatientDay.findOneAndUpdate(
     { patient: patient._id, date: dateFunctions.getMelbourneDate() },
@@ -69,6 +77,7 @@ const postPatientUpdatePassword = async (req, res) => {
 };
 
 const getPatientHistory = async (req, res) => {
+  patientDayController.updateEngagementForId(req.session.passport.user.id);
   const patient = await getPatientById(req.session.passport.user.id);
   const patientHistory = await patientDayController.getPatientHistoryById(
     req.session.passport.user.id
@@ -81,6 +90,7 @@ const getPatientHistory = async (req, res) => {
 };
 
 module.exports = {
+  getAllPatientIDs,
   getPatientDashboard,
   postPatientDay,
   getPatientById,

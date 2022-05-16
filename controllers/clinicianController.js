@@ -5,6 +5,7 @@ const notesController = require("../controllers/notesController");
 const Clinician = require("../models/clinicianModel");
 const Patient = require("../models/patientModel");
 const dateFunctions = require("../public/javascript/dateFunctions");
+const PatientDay = require("../models/patientDayModel");
 
 const getAllPatientsForClincianId = async (id) => {
   try {
@@ -31,6 +32,7 @@ const getClinicianById = async (id) => {
 };
 
 const getAllPatientDaysForPatients = async (patientIds) => {
+  patientDayController.updateEngagementForIds(patientIds);
   const patientDays = await Promise.all(
     patientIds.map(async (id) =>
       patientDayController.getPatientDayByPatientIdTodayDropId(id)
@@ -75,7 +77,12 @@ const getClinicianAddPatient = async (req, res) => {
 
 const postClinicianAddPatient = async (req, res) => {
   const clinician = await getClinicianById(req.session.passport.user.id);
-  if (!req.body.name || !req.body.email || !req.body.password) {
+  if (
+    !req.body.name ||
+    !req.body.email ||
+    !req.body.password ||
+    !req.body.screenName
+  ) {
     return res.render("clinician/clinician-add-patient", {
       title: "Add Patient",
       clinician: clinician,
@@ -85,6 +92,7 @@ const postClinicianAddPatient = async (req, res) => {
   try {
     const patient = await Patient.create({
       name: req.body.name,
+      screenName: req.body.screenName,
       email: req.body.email,
       password: req.body.password,
       clinician: clinician._id,
@@ -92,9 +100,15 @@ const postClinicianAddPatient = async (req, res) => {
       weightRequired: true,
       insulinDosesRequired: true,
       exerciseRequired: true,
+      engagement: 0,
+    });
+    await PatientDay.create({
+      patient: patient._id,
+      date: dateFunctions.getMelbourneDate(),
     });
     return res.redirect(`/clinician/${patient._id}/thresholds`);
   } catch (error) {
+    console.log(error);
     return res.render("clinician/clinician-add-patient", {
       title: "Add Patient",
       clinician: clinician,
@@ -104,6 +118,7 @@ const postClinicianAddPatient = async (req, res) => {
 };
 
 const getClinicanPatientDashboard = async (req, res) => {
+  patientDayController.updateEngagementForId(req.params.patientID);
   const patientHistory = await patientDayController.getPatientHistoryById(
     req.params.patientID
   );
