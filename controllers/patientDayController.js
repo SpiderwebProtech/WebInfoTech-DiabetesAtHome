@@ -158,7 +158,7 @@ const updateEngagementForId = async (id) => {
   const valid = validHistory.filter((x) => x == true).length;
   await Patient.updateOne(
     { _id: id },
-    { $set: { engagement: (valid / total) * 100 } }
+    { $set: { engagement: ((valid / total) * 100).toFixed(2) } }
   );
 };
 
@@ -287,6 +287,8 @@ const validateAndInsert = async (id, body) => {
   await PatientDay.findOneAndUpdate(
     { patient: id, date: dateFunctions.getMelbourneDate() },
     {
+      valid: valid,
+
       bloodGlucose: bloodGlucose,
       bloodGlucoseTime: bloodGlucoseTime,
       bloodGlucoseComment: bloodGlucoseComment,

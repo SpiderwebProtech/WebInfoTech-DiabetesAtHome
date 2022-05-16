@@ -218,6 +218,10 @@ p {
   justify-content: flex-end;
 }
 
+.flex-center {
+  justify-content: center;
+}
+
 .align-center {
   align-items: center;
 }
