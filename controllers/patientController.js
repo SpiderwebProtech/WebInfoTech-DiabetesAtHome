@@ -91,20 +91,20 @@ const getPatientHistory = async (req, res) => {
 
 const getLeaderboard = async () => {
   await patientDayController.updateAllEngagement();
-  const leaderboard = Patient.find().sort({"engagement": -1}).limit(5);
+  const leaderboard = Patient.find().sort({ engagement: -1 }).limit(5).lean();
   return leaderboard;
-}
-
+};
 
 const getPatientLeaderboard = async (req, res) => {
   const patient = await getPatientById(req.session.passport.user.id);
-  const leaderboard = await getLeaderboard()
+  const leaderboard = await getLeaderboard();
+  console.log(leaderboard);
   return res.render("patient/patient-leaderboard", {
     title: "Leaderboard",
     patient: patient,
     leaderboard: leaderboard,
   });
-}
+};
 
 module.exports = {
   getAllPatientIDs,

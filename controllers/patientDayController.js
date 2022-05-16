@@ -163,12 +163,13 @@ const updateEngagementForId = async (id) => {
 };
 
 const updateEngagementForIds = async (ids) => {
-  ids.forEach((id) => updateEngagementForId(id));
+  ids.forEach(async (id) => await updateEngagementForId(id));
 };
 
-const updateAllEngagement = () => {
-  const allPatientIDs = patientController.getAllPatientIds();
-  updateEngagementforIds(allPatientIDs);
+const updateAllEngagement = async () => {
+  const patientController = require("../controllers/patientController");
+  const allPatientIDs = await patientController.getAllPatientIDs();
+  await updateEngagementForIds(allPatientIDs);
 };
 
 const validateAndInsert = async (id, body) => {
