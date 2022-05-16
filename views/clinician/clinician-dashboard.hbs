@@ -25,7 +25,7 @@
             {{#each combined}}
               <tr>
                 <td>{{this.name}}</td>
-                <td>
+                <td {{#unless this.bloodGlucoseRequired}}class="grey-cell"{{/unless}}>
                   {{#if (outRange this.bloodGlucoseLow this.bloodGlucoseHigh this.bloodGlucose)}}
                     <span class="text-danger">
                   {{else}}
@@ -34,7 +34,7 @@
                     {{this.bloodGlucose}}
                     </span>
                 </td>
-                <td>
+                <td {{#unless this.insulinDosesRequired}}class="grey-cell"{{/unless}}>
                   {{#if (outRange this.insulinDosesLow this.insulinDosesHigh this.insulinDoses)}}
                     <span class="text-danger">
                   {{else}}
@@ -42,7 +42,8 @@
                   {{/if}} 
                     {{this.insulinDoses}}
                     </span>
-                </td><td>
+                </td>
+                <td {{#unless this.weightRequired}}class="grey-cell"{{/unless}}>
                   {{#if (outRange this.weightLow this.weightHigh this.weight)}}
                     <span class="text-danger">
                   {{else}}
@@ -50,7 +51,8 @@
                   {{/if}} 
                     {{this.weight}}
                     </span>
-                </td><td>
+                </td>
+                <td {{#unless this.exerciseRequired}}class="grey-cell"{{/unless}}>
                   {{#if (outRange this.exerciseLow this.exerciseHigh this.exercise)}}
                     <span class="text-danger">
                   {{else}}

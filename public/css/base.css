@@ -233,8 +233,6 @@ p {
   height: 100px;
 }
 
-
-
 .founder-box {
   width: 250px;
   margin: 10px;
@@ -247,6 +245,10 @@ p {
 .vh60-scroll {
   max-height: 60vh;
   overflow: auto;
+}
+
+.grey-cell {
+  background-color: lightgrey;
 }
 
 @media (max-width: 376px) {

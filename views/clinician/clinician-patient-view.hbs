@@ -29,52 +29,68 @@
         <thead>
           <tr>
             <th width="20%">Date</th>
-            <th width="20%">Blood Glucose</th>
-            <th width="20%">Insulin Doses</th>
-            <th width="20%">Weight (kg)</th>
-            <th width="20%">Exercise (steps)</th>
+            {{#if patient.bloodGlucoseRequired}}
+              <th width="20%">Blood Glucose</th>
+            {{/if}}
+            {{#if patient.insulinDosesRequired}}
+              <th width="20%">Insulin Doses</th>
+            {{/if}}
+            {{#if patient.weightRequired}}
+              <th width="20%">Weight (kg)</th>
+            {{/if}}
+            {{#if patient.exerciseRequired}}
+              <th width="20%">Exercise (steps)</th>
+            {{/if}}
           </tr>
         </thead>
         <tbody>
           {{#each patientHistory}}
             <tr>
               <td width="20%">{{this.date}}</td>
-              <td width="20%">
-                {{#if (outRange ../patient.bloodGlucoseLow ../patient.bloodGlucoseHigh this.bloodGlucose)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.bloodGlucose}}
-                  </span>
-              </td>
-              <td width="20%">
-                {{#if (outRange ../patient.insulinDosesLow ../patient.insulinDosesHigh this.insulinDoses)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.insulinDoses}}
-                  </span>
-              </td>
-              <td width="20%">
-                {{#if (outRange ../patient.weightLow ../patient.weightHigh this.weight)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.weight}}
-                  </span>
-              </td>
-              <td width="20%">
-                {{#if (outRange ../patient.exerciseLow ../patient.exerciseHigh this.exercise)}}
-                  <span class="text-danger">
-                {{else}}
-                  <span>
-                {{/if}} 
-                  {{this.exercise}}
-                  </span>
-              </td>
+              {{#if ../patient.bloodGlucoseRequired}}
+                <td width="20%">
+                  {{#if (outRange ../patient.bloodGlucoseLow ../patient.bloodGlucoseHigh this.bloodGlucose)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.bloodGlucose}}
+                    </span>
+                </td>
+              {{/if}}
+              {{#if ../patient.insulinDosesRequired}}
+                <td width="20%">
+                  {{#if (outRange ../patient.insulinDosesLow ../patient.insulinDosesHigh this.insulinDoses)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.insulinDoses}}
+                    </span>
+                </td>
+              {{/if}}
+              {{#if ../patient.weightRequired}}
+                <td width="20%">
+                  {{#if (outRange ../patient.weightLow ../patient.weightHigh this.weight)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.weight}}
+                    </span>
+                </td>
+              {{/if}}
+              {{#if ../patient.exerciseRequired}}
+                <td width="20%">
+                  {{#if (outRange ../patient.exerciseLow ../patient.exerciseHigh this.exercise)}}
+                    <span class="text-danger">
+                  {{else}}
+                    <span>
+                  {{/if}} 
+                    {{this.exercise}}
+                    </span>
+                </td>
+              {{/if}}
             </tr>
           {{/each}}
         </tbody>
