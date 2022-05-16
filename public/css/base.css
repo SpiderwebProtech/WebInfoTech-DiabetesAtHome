@@ -226,9 +226,8 @@ p {
   align-items: start;
 }
 
-.support-message-field {
+.message-field {
   word-wrap: break-word;
-  word-break: break-word;
   width: 400px;
   height: 100px;
 }

@@ -24,12 +24,7 @@
         method="post"
         >
           <div class="flex flex-column flex-wrap form-line">
-              <input 
-              class="support-message-field"
-              type="text" 
-              name="supportMessage" 
-              id="supportMessage" 
-              value="{{patient.supportMessage}}">
+              <textarea class="message-field" id="supportMessage" name="supportMessage">{{patient.supportMessage}}</textarea>
               {{#if patient.supportMessageTime}}
                   <p class="small-text flex flex-end">
                       {{patient.supportMessageTime}}

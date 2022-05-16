@@ -26,13 +26,8 @@
           method="post"
           >
             <div class="flex flex-column flex-wrap form-line">
-              <input 
-              class="support-message-field"
-              type="text" 
-              name="clinicianNote" 
-              id="clinicianNote" 
-              >
-              </div>
+                <textarea class="message-field" id="clinicianNote" name="clinicianNote"></textarea>
+            </div>
             <button type="submit">Add Note</button>
           </form>
         </div>
@@ -48,7 +43,7 @@
               {{#each notes}}
                 <tr>
                     <td width="20%">{{this.time}}</td>
-                    <td width="60%">{{this.note}}</td>
+                    <td width="80%" style="max-width: 300px">{{this.note}}</td>
                 </tr>
               {{/each}}
             </tbody>
