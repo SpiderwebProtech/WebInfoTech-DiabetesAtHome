@@ -15,6 +15,7 @@ const getNotesForPatientId = async (id) => {
 };
 
 const addNoteForPatient = async (id, note) => {
+  console.log(id);
   if (note !== "") {
     await Notes.create({
       patient: id,

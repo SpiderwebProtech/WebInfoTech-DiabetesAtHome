@@ -196,7 +196,7 @@ const getClinicianNotes = async (req, res) => {
   const clinician = await getClinicianById(req.session.passport.user.id);
   const patient = await patientController.getPatientById(req.params.patientID);
   const notes = await notesController.getNotesForPatientId(
-    req.params.patientId
+    req.params.patientID
   );
   return res.render("clinician/clinician-notes", {
     patient: patient,

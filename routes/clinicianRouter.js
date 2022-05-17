@@ -43,7 +43,7 @@ clinicianRouter.get(
 );
 
 clinicianRouter.post(
-  "/:patientId/clinician-notes",
+  "/:patientID/clinician-notes",
   clinicianController.postClinicianNotes
 );
 
