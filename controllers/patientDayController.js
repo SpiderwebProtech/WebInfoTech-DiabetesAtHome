@@ -179,6 +179,10 @@ const validateAndInsert = async (id, body) => {
   }).lean();
   const patientDayExists = !!patientDay;
 
+  if (!patientDayExists) {
+    return;
+  }
+
   const valid =
     patientDay.valid ||
     !!body.bloodGlucose ||

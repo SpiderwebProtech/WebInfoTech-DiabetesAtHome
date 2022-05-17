@@ -55,6 +55,7 @@ const postPatientDay = async (req, res) => {
     req.session.passport.user.id,
     req.body
   );
+
   return res.redirect("back");
 };
 

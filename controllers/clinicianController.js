@@ -72,7 +72,11 @@ const getClinicianDashboard = async (req, res) => {
       title: "Dashboard",
       clinician: clinician,
       combined: combined,
-      comments: comments,
+      comments: comments.sort(
+        (a, b) =>
+          dateFunctions.fromMelbourneTime(b.time) -
+          dateFunctions.fromMelbourneTime(a.time)
+      ),
     });
   }
   return res.sendStatus(404);
