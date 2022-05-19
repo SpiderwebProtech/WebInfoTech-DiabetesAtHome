@@ -8,6 +8,8 @@ const patientSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   screenName: { type: String, required: true },
+  bio: { type: String, required: true },
+  dob: { type: String, required: true },
   engagement: { type: Number, required: true },
   type: { type: String, default: "P" },
   clinician: {

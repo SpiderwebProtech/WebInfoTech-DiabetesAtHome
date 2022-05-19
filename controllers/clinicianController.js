@@ -97,7 +97,9 @@ const postClinicianAddPatient = async (req, res) => {
     !req.body.name ||
     !req.body.email ||
     !req.body.password ||
-    !req.body.screenName
+    !req.body.screenName ||
+    !req.body.dob ||
+    !req.body.bio
   ) {
     return res.render("clinician/clinician-add-patient", {
       title: "Add Patient",
@@ -111,6 +113,8 @@ const postClinicianAddPatient = async (req, res) => {
       screenName: req.body.screenName,
       email: req.body.email,
       password: req.body.password,
+      bio: req.body.bio,
+      dob: req.body.dob,
       clinician: clinician._id,
       bloodGlucoseRequired: true,
       weightRequired: true,

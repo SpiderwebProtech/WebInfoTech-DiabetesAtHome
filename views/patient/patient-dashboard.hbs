@@ -38,6 +38,8 @@
                       id="bloodGlucose"
                       name="bloodGlucose"
                       step="0.01"
+                      min="0"
+                      max="200"
                       {{#if patientDay.bloodGlucose}}
                       value={{patientDay.bloodGlucose}}
                       disabled="disabled"
@@ -70,6 +72,8 @@
                       type="number"
                       id="insulinDoses"
                       name="insulinDoses"
+                      min="0"
+                      max="200"
                       {{#if patientDay.insulinDoses}}
                       value={{patientDay.insulinDoses}}
                       disabled="disabled"
@@ -102,6 +106,8 @@
                       id="weight"
                       name="weight"
                       step="0.01"
+                      min="0"
+                      max="500"
                       {{#if patientDay.weight}}
                       value={{patientDay.weight}}
                       disabled="disabled"
@@ -133,6 +139,8 @@
                       type="number"
                       id="exercise"
                       name="exercise"
+                      min="0"
+                      max="50000"
                       {{#if patientDay.exercise}}
                       value={{patientDay.exercise}}
                       disabled="disabled"
