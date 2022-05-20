@@ -111,7 +111,7 @@ const postClinicianAddPatient = async (req, res) => {
     const patient = await Patient.create({
       name: req.body.name,
       screenName: req.body.screenName,
-      email: req.body.email,
+      email: req.body.email.toLowerCase(),
       password: req.body.password,
       bio: req.body.bio,
       dob: req.body.dob,
