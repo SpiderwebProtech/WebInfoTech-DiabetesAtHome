@@ -18,10 +18,14 @@ patientRouter.post(
   patientController.postPatientUpdatePassword
 );
 
-patientRouter.get(
-  "/leaderboard", 
-  patientController.getPatientLeaderboard
-);
+patientRouter.get("/leaderboard", patientController.getPatientLeaderboard);
 
+patientRouter.get("/about-diabetes", (req, res) => {
+  res.render("patient/patient-about-diabetes");
+});
+
+patientRouter.get("/about-this-website", (req, res) => {
+  res.render("patient/patient-about-this-website");
+});
 
 module.exports = patientRouter;

@@ -7,9 +7,11 @@
     <a class="nav-button" href="/patient/history">Patient History</a>
     <a class="nav-button" href="/patient/leaderboard">Leaderboard</a>
     <a class="nav-button" href="/patient/update-password">Update Password</a>
+    <a class="nav-button" href="/patient/about-this-website">About Us</a>
+    <a class="nav-button" href="/patient/about-diabetes">About Diabetes</a>
   </nav>
   <main>
-    <div class="flex flex-center"> 
+    <div class="flex flex-center">
       <h2 class="text-center">Welcome {{patient.name}}</h2>
       {{#if (gt patient.engagement 80)}}
         <img src="https://digicheckins.com/wp-content/uploads/2019/03/80-percent-01.png" width="100" height="100">
